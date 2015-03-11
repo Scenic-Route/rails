@@ -38,6 +38,7 @@ class RoutesController < ApplicationController
     @route = Route.find(params[:id])
     if current_user == @route.user
       if @route.destroy
+        subtract_from_user_route_count(current_user)
         render json: {:route => nil}, status: :ok
       else
         render json: {:error => @route.errors.full_messages}, status: :unprocessable_entity
