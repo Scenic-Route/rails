@@ -12,6 +12,6 @@ class Route < ActiveRecord::Base
 
   end
 
-  
+
 
 end
