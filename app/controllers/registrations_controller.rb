@@ -4,7 +4,6 @@ class RegistrationsController < Devise::RegistrationsController
     @user = User.create(user_params)
     @user.profile = Profile.create
     @user.stat_tracker = StatTracker.create
-    binding.pry
     if @user.save && @user.profile && @user.stat_tracker
       render json: {:user => @user, :profile => @user.profile, :stat_tracker => @user.stat_tracker}, status: :created
     else
