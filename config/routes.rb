@@ -1,8 +1,18 @@
 Rails.application.routes.draw do
 
   root to: "users#index"
+  get 'users/destroy', to: 'users#destroy'
   devise_for :users, path_names: {sign_in: "login", sign_out: "logout"},
                    controllers: {omniauth_callbacks: "omniauth_callbacks", sessions: "sessions", registrations: "registrations"}
+  patch 'users/edit', to: 'users#edit'
+  get 'users/show', to: 'users#show'
+  get '/profiles', to: 'profiles#show'
+  patch '/profiles', to: 'profiles#edit'
+  get '/stat_trackers', to: 'stat_trackers#show'
+  patch '/stat_trackers', to: 'stat_trackers#edit'
+
+
+  resources :stat_trackers
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -7,6 +7,9 @@ class User < ActiveRecord::Base
 
   before_save :ensure_authentication_token
 
+  has_one :profile, dependent: :destroy
+  has_one :stat_tracker, dependent: :destroy
+
 
          # this is all omniauth bullshit, I'll deal with this later
   # def self.from_omniauth(auth)

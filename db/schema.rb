@@ -11,10 +11,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150311152841) do
+ActiveRecord::Schema.define(version: 20150311171847) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "profiles", force: :cascade do |t|
+    t.string   "location"
+    t.string   "about_me"
+    t.integer  "vehicle_year"
+    t.string   "vehicle_make"
+    t.string   "vehicle_model"
+    t.string   "vehicle_link"
+    t.string   "vehicle_photo_file_name"
+    t.string   "vehicle_photo_content_type"
+    t.integer  "vehicle_photo_file_size"
+    t.datetime "vehicle_photo_updated_at"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.integer  "user_id"
+  end
+
+  create_table "stat_trackers", force: :cascade do |t|
+    t.integer  "route_total",   default: 0
+    t.integer  "comment_total", default: 0
+    t.integer  "rating_total",  default: 0
+    t.integer  "checkin_total", default: 0
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.integer  "user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "username"
