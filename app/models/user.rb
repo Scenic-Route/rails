@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   has_one :profile, dependent: :destroy
   has_one :stat_tracker, dependent: :destroy
   has_many :routes
-  
+  has_many :ratings
 
 
 
