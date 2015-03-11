@@ -7,7 +7,7 @@ class UserController < ApplicationController
     if @user
       render json: (:user => @user), status: :ok
     else
-      render json: (:error => @user.error.full_messages), status: :unprocessable_entity
+      render json: (:error => @user.errors.full_messages), status: :unprocessable_entity
     end
   end
 
@@ -16,9 +16,9 @@ class UserController < ApplicationController
     if @users
       render json: (:users => @users), status: :ok
     else
-      render json: (:error => @users.error.full_messages), status: :unprocessable_entity
+      render json: (:error => @users.errors.full_messages), status: :unprocessable_entity
     end
   end
 
-  
+
 end
