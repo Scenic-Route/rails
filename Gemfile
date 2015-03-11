@@ -28,6 +28,8 @@ gem 'paperclip'
 
 gem 'aws-sdk', '~> 1'
 
+
+
 gem 'geocoder'
 
 gem 'rack-cors'
