@@ -38,6 +38,8 @@ gem 'devise'
 
 gem 'omniauth-facebook'
 
+gem 'better_errors'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -51,7 +53,7 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
   gem 'pry'
-  gem 'better_errors'
+
   gem 'binding_of_caller', :platforms=>[:mri_21]
   gem 'hub', :require=>nil
   gem 'quiet_assets'

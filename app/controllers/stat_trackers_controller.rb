@@ -23,7 +23,7 @@ class StatTrackersController < ApplicationController
   def edit
     @stat_tracker.update_attributes(stat_tracker_params)
     if @stat_tracker.save
-      render json: {nil}, status: :ok
+      render json: {:stat_tracker => @stat_tracker}, status: :ok
     else
       render json: {:error => @stat_tracker.errors.full_messages}, status: :unprocessable_entity
     end
