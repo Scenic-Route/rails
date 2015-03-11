@@ -13,6 +13,10 @@ class ProfilesController < ApplicationController
   def show
     @profile = current_user.profile
     if @profile
+      render json: {:profile => @profile}, status: :ok
+    else
+      render json: {:error => @profile.errors.full_messages}, status: :unprocessable_entity
+    end
 
   end
 
