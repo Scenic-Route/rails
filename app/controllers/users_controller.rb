@@ -21,4 +21,11 @@ class UserController < ApplicationController
   end
 
 
+  private
+
+    def as_json(opts={})
+      super(:only => [:id, :email, :username, :first_name, :last_name])
+    end
+
+
 end

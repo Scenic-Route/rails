@@ -48,11 +48,8 @@ class User < ActiveRecord::Base
   end
 
 
-  private
 
-  def as_json(opts={})
-    super(:only => [:email, :username, :authentication_token])
-  end
+  private
 
   def generate_authentication_token
    loop do
