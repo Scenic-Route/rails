@@ -5,18 +5,18 @@ class UserController < ApplicationController
   def show
     @user = User.find(params[:id])
     if @user
-      render json: (:user => @user), status: :ok
+      render json: {:user => @user}, status: :ok
     else
-      render json: (:error => @user.errors.full_messages), status: :unprocessable_entity
+      render json: {:error => @user.errors.full_messages}, status: :unprocessable_entity
     end
   end
 
   def index
     @users = User.all
     if @users
-      render json: (:users => @users), status: :ok
+      render json: {:users => @users}, status: :ok
     else
-      render json: (:error => @users.errors.full_messages), status: :unprocessable_entity
+      render json: {:error => @users.errors.full_messages}, status: :unprocessable_entity
     end
   end
 
