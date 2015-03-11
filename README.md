@@ -37,7 +37,7 @@ Users
                            
 * To edit a user's email or password
 
-  PATCH /users
+  PATCH /users/edit
   
       JSON requested: {user: {email: string AND/OR
                               password: string}
