@@ -17,12 +17,12 @@ Users
 
   POST /users
   
-    JSON requested: {user: {email: string,
+    JSON requested: `{user: {email: string,
                             password: string,
                             username: string}
-                            }
+                            }`
                             
-    JSON returned: {user: {email: string,
+    JSON returned: `{user: {email: string,
                            username: string,
                            id: integer,
                            created_at: timestamp,
@@ -32,7 +32,7 @@ Users
                            first_name: string,
                            last_name: string,
                            authentication_token: string}
-                           }, status 200
+                           }, status 200`
                            
                            
 * To log in a user
