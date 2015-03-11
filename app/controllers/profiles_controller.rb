@@ -20,9 +20,9 @@ class ProfilesController < ApplicationController
 
   end
 
-  def edit(profile_params)
+  def edit
     @profile = current_user.profile
-    @profile.update_attributes(profile_params)
+    @profile.update(profile_params)
     if @profile.save
       render json: {:profile => @profile}, status: :ok
     else
