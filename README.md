@@ -43,7 +43,7 @@ Users
                             password: string}
                             }
     
-      JSON returned: {user: {id: 5,
+      JSON returned: {user: {id: integer,
                           username: string,
                           email: string,
                           created_at: timestamp,
@@ -61,7 +61,21 @@ Users
   
       JSON returned: {user: nil}, status 200
     
-    
+* To look at a user's information
+
+  GET /users
+  
+      JSON returned: {user: {id: integer,
+                          username: string,
+                          email: string,
+                          created_at: timestamp,
+                          updated_at: timestamp,
+                          provider: string,
+                          uid: string,
+                          first_name: string,
+                          last_name: string,
+                          authentication_token: string}
+                          }, status 200
     
 Profiles
 -----
