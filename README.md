@@ -56,29 +56,16 @@ _____
                               password: string}
                               }
       
-      JSON returned: {user: {id: integer,
-                          username: string,
-                          email: string,
-                          created_at: timestamp,
-                          updated_at: timestamp,
-                          provider: string,
-                          uid: string,
-                          first_name: string,
-                          last_name: string,
-                          authentication_token: string},
-                      profile: {location: string,
-                              about_me: string,
-                              vehicle_year: integer,
-                              vehicle_make: string,
-                              vehicle_model: string,
-                              vehicle_link: string},
-                      stat_tracker: {route_total: string,
-                                    comment_total: integer,
-                                    rating_total: integer,
-                                    checkin_total: integer,
-                                    user_id: integer}
-                                    
-                                    }, status: 200
+  JSON returned: {user: {id: integer,
+                      username: string,
+                      email: string,
+                      created_at: timestamp,
+                      updated_at: timestamp,
+                      provider: string,
+                      uid: string,
+                      first_name: string,
+                      last_name: string,
+                      authentication_token: string}
                            
 
 _____                           
