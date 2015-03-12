@@ -100,7 +100,27 @@ _____
                           last_name: string,
                           authentication_token: string}
                           }, status 200
-    
+
+Stat Trackers
+-----
+
+  * To view a user's stats
+  
+    GET /stat_trackers
+      
+        JSON returned: {stat_tracker: {route_total: string,
+                                      comment_total: integer,
+                                      rating_total: integer,
+                                      checkin_total: integer,
+                                      user_id: integer}
+                                      }
+                                      
+
+
+
+
+
+
 Profiles
 -----
 
