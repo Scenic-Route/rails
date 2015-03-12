@@ -138,8 +138,7 @@ Profiles
 
 ROUTES
 =====
-* Maybe I should've come up with a different name...
-_____
+
 * To create a new route
 
   POST /routes
@@ -169,6 +168,7 @@ _____
                               traffic_rating: float,
                               quality_rating: float}
                               }
+                              
 _____                              
 * To view a single route's information
 
@@ -190,6 +190,7 @@ _____
                               traffic_rating: float,
                               quality_rating: float}
                               }
+                              
 _____  
 * To edit a route
 
