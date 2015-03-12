@@ -106,14 +106,7 @@ Stat Trackers
 
   * To view a user's stats
   
-    GET /stat_trackers
-      
-        JSON returned: {stat_tracker: {route_total: string,
-                                      comment_total: integer,
-                                      rating_total: integer,
-                                      checkin_total: integer,
-                                      user_id: integer}
-                                      }
+
                                       
 
 
@@ -135,12 +128,19 @@ Profiles
                               vehicle_model: string,
                               vehicle_link: string}
                               }
+                              
       JSON returned: {profile: {location: string,
                               about_me: string,
                               vehicle_year: integer,
                               vehicle_make: string,
                               vehicle_model: string,
                               vehicle_link: string}
+                      {stat_tracker: {route_total: string,
+                                      comment_total: integer,
+                                      rating_total: integer,
+                                      checkin_total: integer,
+                                      user_id: integer}
+                                      }
                               }, status: 200
 _____                             
   * To view a user's profile
@@ -156,7 +156,7 @@ _____
                               }, status: 200  
                               
 
-ROUTES
+Routes
 =====
 
 * To create a new route
