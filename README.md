@@ -34,7 +34,7 @@ Users
                            authentication_token: string}
                            }, status 200
                            
-                           
+
 _____
   * To edit a user's email or password
 
@@ -122,7 +122,7 @@ Profiles
                               vehicle_model: string,
                               vehicle_link: string}
                               }, status: 200
- _____                             
+_____                             
   * To view a user's profile
 
   GET /profiles
