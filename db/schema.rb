@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150311171847) do
+ActiveRecord::Schema.define(version: 20150312002147) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,34 @@ ActiveRecord::Schema.define(version: 20150311171847) do
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
     t.integer  "user_id"
+  end
+
+  create_table "ratings", force: :cascade do |t|
+    t.integer  "police_rating"
+    t.integer  "quality_rating"
+    t.integer  "traffic_rating"
+    t.integer  "route_id"
+    t.integer  "user_id"
+    t.string   "comments",       default: ""
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+  end
+
+  create_table "routes", force: :cascade do |t|
+    t.decimal  "start_lat",      precision: 12, scale: 10
+    t.decimal  "start_long",     precision: 12, scale: 10
+    t.decimal  "end_lat",        precision: 12, scale: 10
+    t.decimal  "end_long",       precision: 12, scale: 10
+    t.integer  "user_id"
+    t.string   "name"
+    t.integer  "high_limit"
+    t.integer  "low_limit"
+    t.integer  "popularity",                               default: 0
+    t.datetime "created_at",                                             null: false
+    t.datetime "updated_at",                                             null: false
+    t.float    "police_rating",                            default: 0.0
+    t.float    "traffic_rating",                           default: 0.0
+    t.float    "quality_rating",                           default: 0.0
   end
 
   create_table "stat_trackers", force: :cascade do |t|
