@@ -133,12 +133,89 @@ Profiles
                               }, status: 200  
                               
 
+ROUTES
+=====
+* Maybe I should've come up with a different name...
+
+* To create a new route
+
+  POST /routes
+  
+      JSON requested: {route: {start_lat: decimal,
+                              start_long: decimal,
+                              end_lat: decimal,
+                              end_long: decimal,
+                              user_id: integer,
+                              name: string,
+                              high_limit: integer,
+                              low_limit: integer}
+                              
+      JSON returned: {route: {id: integer,
+                              start_lat: decimal,
+                              start_long: decimal,
+                              end_lat: decimal,
+                              end_long: decimal,
+                              user_id: integer,
+                              name: string,
+                              high_limit: integer,
+                              low_limit: integer,
+                              popularity: integer,
+                              created_at: timestamp,
+                              updated_at: timestamp,
+                              police_rating: float,
+                              traffic_rating: float,
+                              quality_rating: float}
+                              }
+                              
+* To view a single route's information
+
+  GET /routes/:id
+    
+      JSON returned: {route: {id: integer,
+                              start_lat: decimal,
+                              start_long: decimal,
+                              end_lat: decimal,
+                              end_long: decimal,
+                              user_id: integer,
+                              name: string,
+                              high_limit: integer,
+                              low_limit: integer,
+                              popularity: integer,
+                              created_at: timestamp,
+                              updated_at: timestamp,
+                              police_rating: float,
+                              traffic_rating: float,
+                              quality_rating: float}
+                              }
+  
+* To edit a route
+
+  PATCH /routes/:id
+  
+      JSON requested: {route: {start_lat: decimal,
+                              start_long: decimal,
+                              end_lat: decimal,
+                              end_long: decimal,
+                              user_id: integer,
+                              name: string,
+                              high_limit: integer,
+                              low_limit: integer}
+                              
+      JSON returned: {route: {id: integer,
+                              start_lat: decimal,
+                              start_long: decimal,
+                              end_lat: decimal,
+                              end_long: decimal,
+                              user_id: integer,
+                              name: string,
+                              high_limit: integer,
+                              low_limit: integer,
+                              popularity: integer,
+                              created_at: timestamp,
+                              updated_at: timestamp,
+                              police_rating: float,
+                              traffic_rating: float,
+                              quality_rating: float}
+                              }
                            
                           
-
-
-
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
