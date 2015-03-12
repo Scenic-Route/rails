@@ -89,6 +89,7 @@ _____
                           last_name: string,
                           authentication_token: string}
                           }, status 200
+                          
 _____                            
   * To destroy a user
 
