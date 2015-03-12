@@ -28,7 +28,7 @@ Rails.application.routes.draw do
     # routes for ratings
 
   post '/ratings', to: 'ratings#create' 
-  get '/ratings', to: 'ratings#show'
+  get '/ratings/:id', to: 'ratings#show'
   patch '/ratings/:id', to: 'ratings#edit'
   delete '/ratings/:id', to: 'ratings#destroy'
   
