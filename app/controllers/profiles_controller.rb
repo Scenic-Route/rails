@@ -12,8 +12,9 @@ class ProfilesController < ApplicationController
 
   def show
     @profile = current_user.profile
+    @stat_tracker = current_user.stat_tracker
     if @profile
-      render json: {:profile => @profile}, status: :ok
+      render json: {:user => current_user, :profile => @profile, :stat_tracker => @stat_tracker}, status: :ok
     else
       render json: {:error => @profile.errors.full_messages}, status: :unprocessable_entity
     end
@@ -22,9 +23,10 @@ class ProfilesController < ApplicationController
 
   def edit
     @profile = current_user.profile
+    @stat_tracker = current_user.stat_tracker
     @profile.update(profile_params)
     if @profile.save
-      render json: {:profile => @profile}, status: :ok
+      render json: {:user => current_user, :profile => @profile, :stat_tracker => @stat_tracker}, status: :ok
     else
       render json: {:error => @profile.errors.full_messages}, status: :unprocessable_entity
     end

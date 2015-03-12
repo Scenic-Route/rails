@@ -13,7 +13,7 @@ class UserController < ApplicationController
 
   def index
     @users = User.all
-    if @users
+    if @users.count > 0
       render json: {:users => @users}, status: :ok
     else
       render json: {:error => @users.errors.full_messages}, status: :unprocessable_entity
