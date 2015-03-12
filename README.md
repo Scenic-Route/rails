@@ -13,7 +13,7 @@ ROUTING
 Users
 -----
   
-* To register a new user
+  *To register a new user
 
   POST /users
   
@@ -22,20 +22,33 @@ Users
                             username: string}
                             }
                             
-      JSON returned: {user: {email: string,
-                           username: string,
-                           id: integer,
-                           created_at: timestamp,
-                           updated_at: timestamp,
-                           provider: string,
-                           uid: string,
-                           first_name: string,
-                           last_name: string,
-                           authentication_token: string}
-                           }, status 200
+      JSON returned: {user: {id: integer,
+                          username: string,
+                          email: string,
+                          created_at: timestamp,
+                          updated_at: timestamp,
+                          provider: string,
+                          uid: string,
+                          first_name: string,
+                          last_name: string,
+                          authentication_token: string},
+                      profile: {location: string,
+                              about_me: string,
+                              vehicle_year: integer,
+                              vehicle_make: string,
+                              vehicle_model: string,
+                              vehicle_link: string},
+                      stat_tracker: {route_total: string,
+                                    comment_total: integer,
+                                    rating_total: integer,
+                                    checkin_total: integer,
+                                    user_id: integer}
+                                    
+                                    }, status: 200
                            
-                           
-* To edit a user's email or password
+
+_____
+  * To edit a user's email or password
 
   PATCH /users/edit
   
@@ -43,20 +56,34 @@ Users
                               password: string}
                               }
       
-      JSON returned: {user: {email: string,
-                           username: string,
-                           id: integer,
-                           created_at: timestamp,
-                           updated_at: timestamp,
-                           provider: string,
-                           uid: string,
-                           first_name: string,
-                           last_name: string,
-                           authentication_token: string}
-                           }, status 200
+      JSON returned: {user: {id: integer,
+                          username: string,
+                          email: string,
+                          created_at: timestamp,
+                          updated_at: timestamp,
+                          provider: string,
+                          uid: string,
+                          first_name: string,
+                          last_name: string,
+                          authentication_token: string},
+                      profile: {location: string,
+                              about_me: string,
+                              vehicle_year: integer,
+                              vehicle_make: string,
+                              vehicle_model: string,
+                              vehicle_link: string},
+                      stat_tracker: {route_total: string,
+                                    comment_total: integer,
+                                    rating_total: integer,
+                                    checkin_total: integer,
+                                    user_id: integer}
+                                    
+                                    }, status: 200
                            
-                           
-* To log in a user
+
+_____                           
+  * To log in a user
+
 
   POST /users/login
   
@@ -75,14 +102,14 @@ Users
                           last_name: string,
                           authentication_token: string}
                           }, status 200
-                            
-* To destroy a user
+_____                            
+  * To destroy a user
 
   GET /users/destroy
   
       JSON returned: {user: nil}, status 200
-    
-* To look at a user's information
+_____    
+  * To look at a user's information
 
   GET /users
   
@@ -97,11 +124,12 @@ Users
                           last_name: string,
                           authentication_token: string}
                           }, status 200
-    
+
+
 Profiles
 -----
 
-* To edit a user's profile
+  * To edit a user's profile
 
   PATCH /profiles
   
@@ -112,33 +140,144 @@ Profiles
                               vehicle_model: string,
                               vehicle_link: string}
                               }
-      JSON returned: {profile: {location: string,
+                              
+      JSON returned: {user: {id: integer,
+                          username: string,
+                          email: string,
+                          created_at: timestamp,
+                          updated_at: timestamp,
+                          provider: string,
+                          uid: string,
+                          first_name: string,
+                          last_name: string,
+                          authentication_token: string},
+                      profile: {location: string,
                               about_me: string,
                               vehicle_year: integer,
                               vehicle_make: string,
                               vehicle_model: string,
-                              vehicle_link: string}
-                              }, status: 200
-                              
-* To view a user's profile
+                              vehicle_link: string},
+                      stat_tracker: {route_total: string,
+                                    comment_total: integer,
+                                    rating_total: integer,
+                                    checkin_total: integer,
+                                    user_id: integer}
+                                    
+                                    }, status: 200
+_____                             
+  * To view a user's profile
 
   GET /profiles
   
-      JSON returned: {profile: {location: string,
+      JSON returned: {user: {id: integer,
+                          username: string,
+                          email: string,
+                          created_at: timestamp,
+                          updated_at: timestamp,
+                          provider: string,
+                          uid: string,
+                          first_name: string,
+                          last_name: string,
+                          authentication_token: string},
+                      profile: {location: string,
                               about_me: string,
                               vehicle_year: integer,
                               vehicle_make: string,
                               vehicle_model: string,
-                              vehicle_link: string}
-                              }, status: 200  
+                              vehicle_link: string},
+                      stat_tracker: {route_total: string,
+                                    comment_total: integer,
+                                    rating_total: integer,
+                                    checkin_total: integer,
+                                    user_id: integer}
+                                    
+                                    }, status: 200 
                               
 
+Routes
+=====
+
+* To create a new route
+
+  POST /routes
+  
+      JSON requested: {route: {start_lat: decimal,
+                              start_long: decimal,
+                              end_lat: decimal,
+                              end_long: decimal,
+                              user_id: integer,
+                              name: string,
+                              high_limit: integer,
+                              low_limit: integer}
+                              
+      JSON returned: {route: {id: integer,
+                              start_lat: decimal,
+                              start_long: decimal,
+                              end_lat: decimal,
+                              end_long: decimal,
+                              user_id: integer,
+                              name: string,
+                              high_limit: integer,
+                              low_limit: integer,
+                              popularity: integer,
+                              created_at: timestamp,
+                              updated_at: timestamp,
+                              police_rating: float,
+                              traffic_rating: float,
+                              quality_rating: float}
+                              }
+                              
+_____                              
+* To view a single route's information
+
+  GET /routes/:id
+    
+      JSON returned: {route: {id: integer,
+                              start_lat: decimal,
+                              start_long: decimal,
+                              end_lat: decimal,
+                              end_long: decimal,
+                              user_id: integer,
+                              name: string,
+                              high_limit: integer,
+                              low_limit: integer,
+                              popularity: integer,
+                              created_at: timestamp,
+                              updated_at: timestamp,
+                              police_rating: float,
+                              traffic_rating: float,
+                              quality_rating: float}
+                              }
+                              
+_____  
+* To edit a route
+
+  PATCH /routes/:id
+  
+      JSON requested: {route: {start_lat: decimal,
+                              start_long: decimal,
+                              end_lat: decimal,
+                              end_long: decimal,
+                              user_id: integer,
+                              name: string,
+                              high_limit: integer,
+                              low_limit: integer}
+                              
+      JSON returned: {route: {id: integer,
+                              start_lat: decimal,
+                              start_long: decimal,
+                              end_lat: decimal,
+                              end_long: decimal,
+                              user_id: integer,
+                              name: string,
+                              high_limit: integer,
+                              low_limit: integer,
+                              popularity: integer,
+                              created_at: timestamp,
+                              updated_at: timestamp,
+                              police_rating: float,
+                              traffic_rating: float,
+                              quality_rating: float}
+                              }
                            
                           
-
-
-
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
