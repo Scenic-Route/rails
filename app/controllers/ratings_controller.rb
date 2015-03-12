@@ -4,7 +4,7 @@ before_action :authenticate_user_from_token!
   def create
     @rating = Rating.new(rating_params)
     if @rating.save
-      # If rating saves, update user's stat tracker
+        # If rating saves, update user's stat tracker
       @rating.add_to_user_rating_count(current_user)
       @route = Route.find(@rating.route_id)
       @route.calculate_ratings
@@ -12,6 +12,7 @@ before_action :authenticate_user_from_token!
     else
       render json: {:error => @rating.errors.full_messages}, status: :unprocessable_entity
     end
+
   end
 
   def show

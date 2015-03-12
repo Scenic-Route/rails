@@ -17,20 +17,22 @@ Rails.application.routes.draw do
   get '/stat_trackers', to: 'stat_trackers#show'
   patch '/stat_trackers', to: 'stat_trackers#edit'
 
-    # routes for routes
+    # routes for routes... hardee har har
+  get '/routes', to: 'routes#my_routes'
+  post '/routes', to: 'routes#create'
   get '/routes/:id', to: 'routes#show'
   patch '/routes/:id', to: 'routes#edit'
-  post '/routes', to: 'routes#create'
   delete '/routes/:id', to: 'routes#destroy'
   post '/routes/search', to: 'routes#search'
   get '/routes/:id/ratings', to: 'routes#route_ratings'
 
     # routes for ratings
-
   post '/ratings', to: 'ratings#create' 
   get '/ratings/:id', to: 'ratings#show'
   patch '/ratings/:id', to: 'ratings#edit'
   delete '/ratings/:id', to: 'ratings#destroy'
+
+    # routes for check-ins
   
 
 

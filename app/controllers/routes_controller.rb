@@ -10,8 +10,17 @@ before_action :authenticate_user_from_token!
     end
   end
 
+  def my_routes
+    @routes = Route.where(user_id: current_user.id).all
+    if @routes.count
+      render json: {:routes => @routes}, status: :ok
+    else
+      render json: {:error => @routes.errors.full_messages}, status: :unprocessable_entity
+    end
+  end
+
+
   def edit
-    # TODO: set validation ensuring nobody can edit someone else's route
     @route = Route.find(params[:id])
     if current_user == @route.user
       @route.update(route_params)
@@ -58,7 +67,7 @@ before_action :authenticate_user_from_token!
   def route_ratings
     @route = Route.find(params[:id])
     @ratings = @route.ratings
-    if @ratings.count > 0
+    if @ratings.count
       render json: {:route => @route, :ratings => @ratings}, status: :ok
     else
       render json: {:error => @ratings.errors.full_messages}, status: :unprocessable_entity
