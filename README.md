@@ -14,7 +14,7 @@ Users
 -----
   
   *To register a new user
-_____
+
   POST /users
   
       JSON requested: {user: {email: string,
@@ -35,8 +35,9 @@ _____
                            }, status 200
                            
                            
-  * To edit a user's email or password
 _____
+  * To edit a user's email or password
+
   PATCH /users/edit
   
       JSON requested: {user: {email: string AND/OR
@@ -55,9 +56,10 @@ _____
                            authentication_token: string}
                            }, status 200
                            
-                           
+
+_____                           
   * To log in a user
-_____
+
 
   POST /users/login
   
@@ -76,15 +78,15 @@ _____
                           last_name: string,
                           authentication_token: string}
                           }, status 200
-                            
+_____                            
   * To destroy a user
-_____
+
   GET /users/destroy
   
       JSON returned: {user: nil}, status 200
-    
+_____    
   * To look at a user's information
-_____
+
   GET /users
   
       JSON returned: {user: {id: integer,
@@ -103,7 +105,7 @@ Profiles
 -----
 
   * To edit a user's profile
-_____
+
   PATCH /profiles
   
       JSON requested: {profile: {location: string,
@@ -120,9 +122,9 @@ _____
                               vehicle_model: string,
                               vehicle_link: string}
                               }, status: 200
-                              
+ _____                             
   * To view a user's profile
-_____
+
   GET /profiles
   
       JSON returned: {profile: {location: string,
@@ -137,7 +139,7 @@ _____
 ROUTES
 =====
 * Maybe I should've come up with a different name...
-
+_____
 * To create a new route
 
   POST /routes
@@ -167,7 +169,7 @@ ROUTES
                               traffic_rating: float,
                               quality_rating: float}
                               }
-                              
+_____                              
 * To view a single route's information
 
   GET /routes/:id
@@ -188,7 +190,7 @@ ROUTES
                               traffic_rating: float,
                               quality_rating: float}
                               }
-  
+_____  
 * To edit a route
 
   PATCH /routes/:id
