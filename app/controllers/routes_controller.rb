@@ -1,4 +1,5 @@
 class RoutesController < ApplicationController
+before_action :authenticate_user_from_token!
 
   def show
     @route = Route.find(params[:id])
@@ -28,6 +29,7 @@ class RoutesController < ApplicationController
     # add points to user's stat tracker
     @route = Route.new(route_params)
     if @route.save
+      @route.add_to_user_route_count(current_user)
       render json: {:route => @route}, status: :created
     else
       render json: {:error => @route.error.full_messages}, status: :unprocessable_entity
@@ -38,7 +40,7 @@ class RoutesController < ApplicationController
     @route = Route.find(params[:id])
     if current_user == @route.user
       if @route.destroy
-        subtract_from_user_route_count(current_user)
+        @route.subtract_from_user_route_count(current_user)
         render json: {:route => nil}, status: :ok
       else
         render json: {:error => @route.errors.full_messages}, status: :unprocessable_entity
@@ -50,6 +52,17 @@ class RoutesController < ApplicationController
 
   def search
     # find all routes within X distance of user's current location
+    @routes = search_by_distance(search_params)
+  end
+
+  def route_ratings
+    @route = Route.find(params[:id])
+    @ratings = @route.ratings
+    if @ratings.count > 0
+      render json: {:route => @route, :ratings => @ratings}, status: :ok
+    else
+      render json: {:error => @ratings.errors.full_messages}, status: :unprocessable_entity
+    end
   end
 
   private
@@ -59,7 +72,7 @@ class RoutesController < ApplicationController
     end
 
     def search_params
-      params.require(:search).permit(:current_lat, :current_long, :search_radius)
+      params.require(:search).permit(:current_lat, :current_long, :search_radius, :order_by)
     end
 
     def route_params

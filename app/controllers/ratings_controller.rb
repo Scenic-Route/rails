@@ -1,13 +1,13 @@
 class RatingsController < ApplicationController
+before_action :authenticate_user_from_token!
 
   def create
-    @user = current_user
     @rating = Rating.new(rating_params)
     if @rating.save
       # If rating saves, update user's stat tracker
-      if !add_to_user_rating_count(@user)
-        render json: {:error => @user.errors.full_messages}, status: :unprocessable_entity
-      end
+      @rating.add_to_user_rating_count(current_user)
+      @route = Route.find(@rating.route_id)
+      @route.calculate_ratings
       render json: {:rating => @rating, :route => @rating.route}, status: :created
     else
       render json: {:error => @rating.errors.full_messages}, status: :unprocessable_entity
@@ -21,11 +21,6 @@ class RatingsController < ApplicationController
     else
       render json: {:error => @rating.errors.full_messages}, status: :unprocessable_entity
     end
-  end
-
-  def index_for_route
-    # figure out how to find all by route ID
-    # @ratings = Rating.where()
   end
 
   def edit
@@ -44,6 +39,7 @@ class RatingsController < ApplicationController
       render json: {:error => 'You cannot delete a rating that is not yours!'}, status: :forbidden
     else
       if @rating.destroy
+        @rating.subtract_from_user_rating_count(current_user)
         render json: {:rating => nil}, status: :ok
       else
         render json: {:error => @rating.errors.full_messages}, status: :unprocessable_entity
