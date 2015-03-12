@@ -35,6 +35,7 @@ class ProfilesController < ApplicationController
       end
     else
       render json: {:error => 'You cannot edit a profile that is not yours!'}, status: :forbidden
+    end
   end
 
 
