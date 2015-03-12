@@ -13,8 +13,8 @@ ROUTING
 Users
 -----
   
-* To register a new user
-
+  *To register a new user
+_____
   POST /users
   
       JSON requested: {user: {email: string,
@@ -35,8 +35,8 @@ Users
                            }, status 200
                            
                            
-* To edit a user's email or password
-
+  * To edit a user's email or password
+_____
   PATCH /users/edit
   
       JSON requested: {user: {email: string AND/OR
@@ -56,7 +56,8 @@ Users
                            }, status 200
                            
                            
-* To log in a user
+  * To log in a user
+_____
 
   POST /users/login
   
@@ -76,14 +77,14 @@ Users
                           authentication_token: string}
                           }, status 200
                             
-* To destroy a user
-
+  * To destroy a user
+_____
   GET /users/destroy
   
       JSON returned: {user: nil}, status 200
     
-* To look at a user's information
-
+  * To look at a user's information
+_____
   GET /users
   
       JSON returned: {user: {id: integer,
@@ -101,8 +102,8 @@ Users
 Profiles
 -----
 
-* To edit a user's profile
-
+  * To edit a user's profile
+_____
   PATCH /profiles
   
       JSON requested: {profile: {location: string,
@@ -120,8 +121,8 @@ Profiles
                               vehicle_link: string}
                               }, status: 200
                               
-* To view a user's profile
-
+  * To view a user's profile
+_____
   GET /profiles
   
       JSON returned: {profile: {location: string,
