@@ -214,7 +214,47 @@ Routes
                               traffic_rating: float,
                               quality_rating: float}
                               }
+                            
+_____
+* To get a user's routes (only works for signed-in user)
+
+  GET /routes
+  
+      JSON returned: {routes: [
+                              {id: integer,
+                              start_lat: decimal,
+                              start_long: decimal,
+                              end_lat: decimal,
+                              end_long: decimal,
+                              user_id: integer,
+                              name: string,
+                              high_limit: integer,
+                              low_limit: integer,
+                              popularity: integer,
+                              created_at: timestamp,
+                              updated_at: timestamp,
+                              police_rating: float,
+                              traffic_rating: float,
+                              quality_rating: float},
                               
+                              {id: integer,
+                              start_lat: decimal,
+                              start_long: decimal,
+                              end_lat: decimal,
+                              end_long: decimal,
+                              user_id: integer,
+                              name: string,
+                              high_limit: integer,
+                              low_limit: integer,
+                              popularity: integer,
+                              created_at: timestamp,
+                              updated_at: timestamp,
+                              police_rating: float,
+                              traffic_rating: float,
+                              quality_rating: float}]
+                        }
+                        
+                        
 _____                              
 * To view a single route's information
 
