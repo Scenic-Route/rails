@@ -22,17 +22,29 @@ Users
                             username: string}
                             }
                             
-      JSON returned: {user: {email: string,
-                           username: string,
-                           id: integer,
-                           created_at: timestamp,
-                           updated_at: timestamp,
-                           provider: string,
-                           uid: string,
-                           first_name: string,
-                           last_name: string,
-                           authentication_token: string}
-                           }, status 200
+      JSON returned: {user: {id: integer,
+                          username: string,
+                          email: string,
+                          created_at: timestamp,
+                          updated_at: timestamp,
+                          provider: string,
+                          uid: string,
+                          first_name: string,
+                          last_name: string,
+                          authentication_token: string},
+                      profile: {location: string,
+                              about_me: string,
+                              vehicle_year: integer,
+                              vehicle_make: string,
+                              vehicle_model: string,
+                              vehicle_link: string},
+                      stat_tracker: {route_total: string,
+                                    comment_total: integer,
+                                    rating_total: integer,
+                                    checkin_total: integer,
+                                    user_id: integer}
+                                    
+                                    }, status: 200
                            
 
 _____
@@ -44,17 +56,29 @@ _____
                               password: string}
                               }
       
-      JSON returned: {user: {email: string,
-                           username: string,
-                           id: integer,
-                           created_at: timestamp,
-                           updated_at: timestamp,
-                           provider: string,
-                           uid: string,
-                           first_name: string,
-                           last_name: string,
-                           authentication_token: string}
-                           }, status 200
+      JSON returned: {user: {id: integer,
+                          username: string,
+                          email: string,
+                          created_at: timestamp,
+                          updated_at: timestamp,
+                          provider: string,
+                          uid: string,
+                          first_name: string,
+                          last_name: string,
+                          authentication_token: string},
+                      profile: {location: string,
+                              about_me: string,
+                              vehicle_year: integer,
+                              vehicle_make: string,
+                              vehicle_model: string,
+                              vehicle_link: string},
+                      stat_tracker: {route_total: string,
+                                    comment_total: integer,
+                                    rating_total: integer,
+                                    checkin_total: integer,
+                                    user_id: integer}
+                                    
+                                    }, status: 200
                            
 
 _____                           
@@ -101,18 +125,6 @@ _____
                           authentication_token: string}
                           }, status 200
 
-Stat Trackers
------
-
-  * To view a user's stats
-  
-
-                                      
-
-
-
-
-
 
 Profiles
 -----
@@ -129,31 +141,57 @@ Profiles
                               vehicle_link: string}
                               }
                               
-      JSON returned: {profile: {location: string,
+      JSON returned: {user: {id: integer,
+                          username: string,
+                          email: string,
+                          created_at: timestamp,
+                          updated_at: timestamp,
+                          provider: string,
+                          uid: string,
+                          first_name: string,
+                          last_name: string,
+                          authentication_token: string},
+                      profile: {location: string,
                               about_me: string,
                               vehicle_year: integer,
                               vehicle_make: string,
                               vehicle_model: string,
-                              vehicle_link: string}
-                      {stat_tracker: {route_total: string,
-                                      comment_total: integer,
-                                      rating_total: integer,
-                                      checkin_total: integer,
-                                      user_id: integer}
-                                      }
-                              }, status: 200
+                              vehicle_link: string},
+                      stat_tracker: {route_total: string,
+                                    comment_total: integer,
+                                    rating_total: integer,
+                                    checkin_total: integer,
+                                    user_id: integer}
+                                    
+                                    }, status: 200
 _____                             
   * To view a user's profile
 
   GET /profiles
   
-      JSON returned: {profile: {location: string,
+      JSON returned: {user: {id: integer,
+                          username: string,
+                          email: string,
+                          created_at: timestamp,
+                          updated_at: timestamp,
+                          provider: string,
+                          uid: string,
+                          first_name: string,
+                          last_name: string,
+                          authentication_token: string},
+                      profile: {location: string,
                               about_me: string,
                               vehicle_year: integer,
                               vehicle_make: string,
                               vehicle_model: string,
-                              vehicle_link: string}
-                              }, status: 200  
+                              vehicle_link: string},
+                      stat_tracker: {route_total: string,
+                                    comment_total: integer,
+                                    rating_total: integer,
+                                    checkin_total: integer,
+                                    user_id: integer}
+                                    
+                                    }, status: 200 
                               
 
 Routes
