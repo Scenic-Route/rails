@@ -12,6 +12,10 @@ class User < ActiveRecord::Base
   has_many :routes
   has_many :ratings
 
+  # validations
+
+  validates_uniqueness_of :username
+
 
 
          # this is all omniauth bullshit, I'll deal with this later

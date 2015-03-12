@@ -11,25 +11,30 @@ class ProfilesController < ApplicationController
   # end
 
   def show
-    @profile = current_user.profile
-    @stat_tracker = current_user.stat_tracker
+    @profile = Profile.find(params[:id])
+    @user = User.find(@profile.user_id)
+    @stat_tracker = @user.stat_tracker
     if @profile
-      render json: {:user => current_user, :profile => @profile, :stat_tracker => @stat_tracker}, status: :ok
+      render json: {:user => @user, :profile => @profile, :stat_tracker => @stat_tracker}, status: :ok
     else
       render json: {:error => @profile.errors.full_messages}, status: :unprocessable_entity
     end
-
   end
 
   def edit
-    @profile = current_user.profile
-    @stat_tracker = current_user.stat_tracker
-    @profile.update(profile_params)
-    if @profile.save
-      render json: {:user => current_user, :profile => @profile, :stat_tracker => @stat_tracker}, status: :ok
+
+    @profile = Profile.find(params[:id])
+    @user = User.find(@profile.user_id)
+    @stat_tracker = @user.stat_tracker
+    if current_user == @user
+      @profile.update(profile_params)
+      if @profile.save
+        render json: {:user => current_user, :profile => @profile, :stat_tracker => @stat_tracker}, status: :ok
+      else
+       render json: {:error => @profile.errors.full_messages}, status: :unprocessable_entity
+      end
     else
-      render json: {:error => @profile.errors.full_messages}, status: :unprocessable_entity
-    end
+      render json: {:error => 'You cannot edit a profile that is not yours!'}, status: :forbidden
   end
 
 
