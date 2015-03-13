@@ -3,6 +3,9 @@ class Route < ActiveRecord::Base
   belongs_to :favorite
   has_many :ratings
 
+  reverse_geocoded_by :latitude, :longitude
+  after_validation :reverse_geocode
+
 
     # validations
   validates_presence_of :start_lat
@@ -15,10 +18,9 @@ class Route < ActiveRecord::Base
 
     # takes a search_params hash and finds all routes based on distance, organizes them based on order_by 
   def search_by_distance(search_params)
-    search_radius = search_params[:search_radius].to_i
     current_location = [search_params[:current_lat], search_params[:current_long]]
-    order_by = search_params[]
-
+    search_radius = search_params[:search_radius]
+    Route.near(current_location, search_radius)
   end
 
     # dynamically calculates rankings for police, traffic, and quality
@@ -58,6 +60,17 @@ class Route < ActiveRecord::Base
   def subtract_from_user_route_count(user)
     user.stat_tracker.route_total -= 1
     user.stat_tracker.save
+  end
+
+
+  def add_to_popularity
+    self.popularity += 1
+    self.save
+  end
+
+  def subtract_from_popularity
+    self.popularity -= 1
+    self.save
   end
 
 

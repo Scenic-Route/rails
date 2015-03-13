@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150312002147) do
+ActiveRecord::Schema.define(version: 20150313150847) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,8 +44,8 @@ ActiveRecord::Schema.define(version: 20150312002147) do
   end
 
   create_table "routes", force: :cascade do |t|
-    t.decimal  "start_lat",      precision: 12, scale: 10
-    t.decimal  "start_long",     precision: 12, scale: 10
+    t.decimal  "latitude",       precision: 12, scale: 10
+    t.decimal  "longitude",      precision: 12, scale: 10
     t.decimal  "end_lat",        precision: 12, scale: 10
     t.decimal  "end_long",       precision: 12, scale: 10
     t.integer  "user_id"
@@ -59,6 +59,8 @@ ActiveRecord::Schema.define(version: 20150312002147) do
     t.float    "traffic_rating",                           default: 0.0
     t.float    "quality_rating",                           default: 0.0
   end
+
+  add_index "routes", ["latitude", "longitude"], name: "location_index", using: :btree
 
   create_table "stat_trackers", force: :cascade do |t|
     t.integer  "route_total",   default: 0

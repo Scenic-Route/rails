@@ -61,7 +61,12 @@ before_action :authenticate_user_from_token!
 
   def search
     # find all routes within X distance of user's current location
-    @routes = search_by_distance(search_params)
+    @routes = Route.near([search_params[:current_lat], search_params[:current_long]], search_params[:search_radius])
+    if @routes
+      render json: {:routes => @routes}, status: :ok
+    else
+      render json: {:error => @routes.errors.full_messages}, status: :unprocessable_entity
+    end
   end
 
   def route_ratings
