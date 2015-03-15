@@ -159,7 +159,7 @@ Profiles
 _____                             
   * To view a user's profile
 
-  GET /profiles
+  GET /profiles/:user_id
   
       JSON returned: {user: {id: integer,
                           username: string,
