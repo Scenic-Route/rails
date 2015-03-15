@@ -20,10 +20,10 @@ Rails.application.routes.draw do
     # routes for routes... hardee har har
   get '/routes', to: 'routes#my_routes'
   post '/routes', to: 'routes#create'
+  post '/routes/search', to: 'routes#search'
   get '/routes/:id', to: 'routes#show'
   patch '/routes/:id', to: 'routes#edit'
   delete '/routes/:id', to: 'routes#destroy'
-  post '/routes/search', to: 'routes#search'
   get '/routes/:id/ratings', to: 'routes#route_ratings'
 
     # routes for ratings

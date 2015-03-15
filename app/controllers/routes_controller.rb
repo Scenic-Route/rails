@@ -86,7 +86,7 @@ before_action :authenticate_user_from_token!
     end
 
     def search_params
-      params.require(:search).permit(:current_lat, :current_long, :search_radius, :order_by)
+      params.require(:search).permit(:current_lat, :current_long, :search_radius)
     end
 
     def route_params
