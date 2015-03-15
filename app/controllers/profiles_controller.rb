@@ -22,11 +22,9 @@ class ProfilesController < ApplicationController
   end
 
   def edit
-
-    @profile = Profile.find(params[:id])
-    @user = User.find(@profile.user_id)
+    @profile = current_user.profile
     @stat_tracker = @user.stat_tracker
-    if current_user == @user
+    if current_user
       @profile.update(profile_params)
       if @profile.save
         render json: {:user => current_user, :profile => @profile, :stat_tracker => @stat_tracker}, status: :ok
