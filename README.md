@@ -313,5 +313,50 @@ _____
                               traffic_rating: float,
                               quality_rating: float}
                               }
-                           
-                          
+-----
+* To search for routes by distance
+
+  POST /routes/search
+  
+      JSON requested: {search: {current_lat: decimal,
+                                current_long: decimal,
+                                search_radius: integer}
+                                }, status: 200
+                                
+      JSON returned: {routes: [
+                            {
+                              {id: integer,
+                              start_lat: decimal,
+                              start_long: decimal,
+                              end_lat: decimal,
+                              end_long: decimal,
+                              user_id: integer,
+                              name: string,
+                              high_limit: integer,
+                              low_limit: integer,
+                              popularity: integer,
+                              created_at: timestamp,
+                              updated_at: timestamp,
+                              twist_rating: float,
+                              traffic_rating: float,
+                              quality_rating: float}
+                            },
+                            {  
+                              {id: integer,
+                              start_lat: decimal,
+                              start_long: decimal,
+                              end_lat: decimal,
+                              end_long: decimal,
+                              user_id: integer,
+                              name: string,
+                              high_limit: integer,
+                              low_limit: integer,
+                              popularity: integer,
+                              created_at: timestamp,
+                              updated_at: timestamp,
+                              twist_rating: float,
+                              traffic_rating: float,
+                              quality_rating: float}
+                            }
+                          ]
+                        }
