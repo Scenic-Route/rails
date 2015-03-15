@@ -37,11 +37,13 @@ Users
                               vehicle_year: integer,
                               vehicle_make: string,
                               vehicle_model: string,
-                              vehicle_link: string},
+                              vehicle_link: string,
+                              level: string},
                       stat_tracker: {route_total: string,
                                     comment_total: integer,
                                     rating_total: integer,
                                     checkin_total: integer,
+                                    points: integer,
                                     user_id: integer}
                                     
                                     }, status: 200
@@ -144,11 +146,13 @@ Profiles
                               vehicle_year: integer,
                               vehicle_make: string,
                               vehicle_model: string,
-                              vehicle_link: string},
+                              vehicle_link: string,
+                              level: string},
                       stat_tracker: {route_total: string,
                                     comment_total: integer,
                                     rating_total: integer,
                                     checkin_total: integer,
+                                    points: integer,
                                     user_id: integer}
                                     
                                     }, status: 200
@@ -172,11 +176,13 @@ _____
                               vehicle_year: integer,
                               vehicle_make: string,
                               vehicle_model: string,
-                              vehicle_link: string},
+                              vehicle_link: string,
+                              level: string},
                       stat_tracker: {route_total: string,
                                     comment_total: integer,
                                     rating_total: integer,
                                     checkin_total: integer,
+                                    points: integer,
                                     user_id: integer}
                                     
                                     }, status: 200 
@@ -210,7 +216,7 @@ Routes
                               popularity: integer,
                               created_at: timestamp,
                               updated_at: timestamp,
-                              police_rating: float,
+                              twist_rating: float,
                               traffic_rating: float,
                               quality_rating: float}
                               }
@@ -233,7 +239,7 @@ _____
                               popularity: integer,
                               created_at: timestamp,
                               updated_at: timestamp,
-                              police_rating: float,
+                              twist_rating: float,
                               traffic_rating: float,
                               quality_rating: float},
                               
@@ -249,7 +255,7 @@ _____
                               popularity: integer,
                               created_at: timestamp,
                               updated_at: timestamp,
-                              police_rating: float,
+                              twist_rating: float,
                               traffic_rating: float,
                               quality_rating: float}]
                         }
@@ -272,7 +278,7 @@ _____
                               popularity: integer,
                               created_at: timestamp,
                               updated_at: timestamp,
-                              police_rating: float,
+                              twist_rating: float,
                               traffic_rating: float,
                               quality_rating: float}
                               }
@@ -303,7 +309,7 @@ _____
                               popularity: integer,
                               created_at: timestamp,
                               updated_at: timestamp,
-                              police_rating: float,
+                              twist_rating: float,
                               traffic_rating: float,
                               quality_rating: float}
                               }
