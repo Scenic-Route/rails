@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150313150847) do
+ActiveRecord::Schema.define(version: 20150313162835) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(version: 20150313150847) do
     t.integer  "popularity",                               default: 0
     t.datetime "created_at",                                             null: false
     t.datetime "updated_at",                                             null: false
-    t.float    "police_rating",                            default: 0.0
+    t.float    "twist_rating",                             default: 0.0
     t.float    "traffic_rating",                           default: 0.0
     t.float    "quality_rating",                           default: 0.0
   end
