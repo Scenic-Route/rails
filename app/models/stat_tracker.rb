@@ -1,7 +1,7 @@
 class StatTracker < ActiveRecord::Base
   belongs_to :user
 
-  before_save :calculate_points_and_level
+  before_update :calculate_points_and_level
 
 
 

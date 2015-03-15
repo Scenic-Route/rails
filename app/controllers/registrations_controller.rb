@@ -3,6 +3,7 @@ class RegistrationsController < Devise::RegistrationsController
 
   def create
     @user = User.create(user_params)
+    @user.save
     @user.profile = Profile.create
     @user.stat_tracker = StatTracker.create
     if @user.save && @user.profile && @user.stat_tracker
