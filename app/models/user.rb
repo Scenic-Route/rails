@@ -17,7 +17,17 @@ class User < ActiveRecord::Base
 
   # validations
 
+  validates_presence_of :username
   validates_uniqueness_of :username
+
+
+  def calculate_points
+    @stats = self.stat_tracker
+    @points = ((@stats.route_total * 5) + @stats.comment_total + (@stats.rating_total * 3) + (@stats.checkin_total * 2))
+    self.profile.points = @points
+    self.profile.save
+    self.profile.calculate_level
+  end
 
 
 

@@ -12,6 +12,8 @@ class Rating < ActiveRecord::Base
   
 
 
+  private
+
   def add_to_user_rating_count(user)
     user.stat_tracker.rating_total += 1
     user.save

@@ -6,7 +6,7 @@ class RegistrationsController < Devise::RegistrationsController
     @user.profile = Profile.create
     @user.stat_tracker = StatTracker.create
     if @user.save && @user.profile && @user.stat_tracker
-      ScenicRouteMailer.creation_email(@user).deliver_now
+      #ScenicRouteMailer.creation_email(@user).deliver_now
       render json: {:user => @user, :profile => @user.profile, :stat_tracker => @user.stat_tracker}, status: :created
     else
       render json: {:error => [@user.errors.full_messages, @user.profile.errors.full_messages, @user.stat_tracker.errors.full_messages]},

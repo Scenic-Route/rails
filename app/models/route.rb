@@ -17,11 +17,14 @@ class Route < ActiveRecord::Base
 
 
     # takes a search_params hash and finds all routes based on distance, organizes them based on order_by 
-  def search_by_distance(search_params)
-    current_location = [search_params[:current_lat], search_params[:current_long]]
-    search_radius = search_params[:search_radius]
-    Route.near(current_location, search_radius)
-  end
+    # isn't necessary right now? Perhaps I can find a way to make my controllers a little bit lighter
+
+    
+  # def search_by_distance(search_params)
+  #   current_location = [search_params[:current_lat], search_params[:current_long]]
+  #   search_radius = search_params[:search_radius]
+  #   Route.near(current_location, search_radius)
+  # end
 
     # dynamically calculates rankings for police, traffic, and quality
   def calculate_ratings
@@ -50,6 +53,8 @@ class Route < ActiveRecord::Base
     total_ratings = [total_quality, total_police, total_traffic]
   end
 
+
+  private
     # adds to user's stat tracker when route is created
   def add_to_user_route_count(user)
     user.stat_tracker.route_total -= 1
