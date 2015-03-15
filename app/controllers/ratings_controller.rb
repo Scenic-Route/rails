@@ -55,10 +55,10 @@ before_action :authenticate_user_from_token!
   private
 
     def as_json(opts={})
-      super(:only => [:id, :user_id, :route_id, :police_rating, :quality_rating, :traffic_rating, :comments])
+      super(:only => [:id, :user_id, :route_id, :twist_rating, :quality_rating, :traffic_rating, :comments])
     end
 
     def rating_params
-      params.require(:rating).permit(:user_id, :route_id, :police_rating, :quality_rating, :traffic_rating, :comments)
+      params.require(:rating).permit(:user_id, :route_id, :twist_rating, :quality_rating, :traffic_rating, :comments)
     end
 end

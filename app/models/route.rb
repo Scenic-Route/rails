@@ -32,10 +32,10 @@ class Route < ActiveRecord::Base
     num_of_ratings = ratings.count
     total_ratings = rating_totals(ratings)
     q_r = (total_ratings[0]/num_of_ratings.to_f)
-    p_r = (total_ratings[1]/num_of_ratings.to_f)
+    twist_r = (total_ratings[1]/num_of_ratings.to_f)
     t_r = (total_ratings[2]/num_of_ratings.to_f)
     self.quality_rating = q_r.round(2)
-    self.police_rating = p_r.round(2)
+    self.twist_rating = twist_r.round(2)
     self.traffic_rating = t_r.round(2)
     self.save
   end
@@ -43,14 +43,14 @@ class Route < ActiveRecord::Base
     # used to help calculate ratings
   def rating_totals(ratings)
     total_quality = 0
-    total_police = 0
+    total_twist = 0
     total_traffic = 0
     ratings.each do |rating|
       total_quality += rating.quality_rating
-      total_police += rating.police_rating
+      total_twist += rating.twist_rating
       total_traffic += rating.traffic_rating
     end
-    total_ratings = [total_quality, total_police, total_traffic]
+    total_ratings = [total_quality, total_twist, total_traffic]
   end
 
 

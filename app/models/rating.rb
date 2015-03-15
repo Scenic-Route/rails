@@ -6,7 +6,7 @@ class Rating < ActiveRecord::Base
   validates_uniqueness_of :user_id, scope: :route_id
   validates_presence_of :user_id
   validates_presence_of :route_id
-  validates_presence_of :police_rating
+  validates_presence_of :twist_rating
   validates_presence_of :quality_rating
   validates_presence_of :traffic_rating
   
