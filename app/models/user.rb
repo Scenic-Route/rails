@@ -6,6 +6,9 @@ class User < ActiveRecord::Base
          :omniauthable
 
   before_save :ensure_authentication_token
+  # after_create :send_creation_email
+
+
 
   has_one :profile, dependent: :destroy
   has_one :stat_tracker, dependent: :destroy
@@ -14,7 +17,17 @@ class User < ActiveRecord::Base
 
   # validations
 
+  validates_presence_of :username
   validates_uniqueness_of :username
+
+
+  def calculate_points
+    @stats = self.stat_tracker
+    @points = ((@stats.route_total * 5) + @stats.comment_total + (@stats.rating_total * 3) + (@stats.checkin_total * 2))
+    self.profile.points = @points
+    self.profile.save
+    self.profile.calculate_level
+  end
 
 
 
@@ -61,11 +74,14 @@ class User < ActiveRecord::Base
 
 
   private
+    # def send_creation_email
+    #   ScenicRouteMailer.creation_email(self.email)
+    # end
 
-  def generate_authentication_token
-   loop do
-     token = Devise.friendly_token
-     break token unless User.where(authentication_token: token).first
-   end
- end
+    def generate_authentication_token
+      loop do
+        token = Devise.friendly_token
+        break token unless User.where(authentication_token: token).first
+      end
+    end
 end

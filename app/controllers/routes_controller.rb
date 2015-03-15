@@ -72,7 +72,7 @@ before_action :authenticate_user_from_token!
   def route_ratings
     @route = Route.find(params[:id])
     @ratings = @route.ratings
-    if @ratings.count
+    if @ratings
       render json: {:route => @route, :ratings => @ratings}, status: :ok
     else
       render json: {:error => @ratings.errors.full_messages}, status: :unprocessable_entity
