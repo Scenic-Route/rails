@@ -11,8 +11,8 @@ class ProfilesController < ApplicationController
   # end
 
   def show
-    @profile = Profile.find(params[:id])
-    @user = User.find(@profile.user_id)
+    @user = User.find(params[:id])
+    @profile = @user.profile
     @stat_tracker = @user.stat_tracker
     if @profile
       render json: {:user => @user, :profile => @profile, :stat_tracker => @stat_tracker}, status: :ok
