@@ -23,7 +23,7 @@ class ProfilesController < ApplicationController
 
   def edit
     @profile = current_user.profile
-    @stat_tracker = @user.stat_tracker
+    @stat_tracker = current_user.stat_tracker
     if current_user
       @profile.update(profile_params)
       if @profile.save
