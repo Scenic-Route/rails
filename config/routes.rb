@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
     # routes for profiles
   get '/profiles/:id', to: 'profiles#show'
-  patch '/profiles/:id', to: 'profiles#edit'
+  patch '/profiles', to: 'profiles#edit'
 
     # routes for stat trackers
   get '/stat_trackers', to: 'stat_trackers#show'
