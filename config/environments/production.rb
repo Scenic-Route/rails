@@ -47,7 +47,7 @@ Rails.application.configure do
         :port =>                  '587',
         :domain =>                "scenic-route.herokuapp.com",
         :user_name =>             "scenicroutemailer@gmail.com",
-        :password =>              "tIYfinalmdb",
+        :password =>              ENV["GMAIL_PASSWORD"],
         :authentication =>        :plain,
         :tls =>                   true
   }
