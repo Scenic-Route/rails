@@ -58,7 +58,7 @@ _____
                               password: string}
                               }
       
-  JSON returned: {user: {id: integer,
+      JSON returned: {user: {id: integer,
                       username: string,
                       email: string,
                       created_at: timestamp,
