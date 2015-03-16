@@ -57,7 +57,7 @@ class Route < ActiveRecord::Base
   private
     # adds to user's stat tracker when route is created
   def add_to_user_route_count(user)
-    user.stat_tracker.route_total -= 1
+    user.stat_tracker.route_total += 1
     user.stat_tracker.save
   end
 
