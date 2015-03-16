@@ -33,7 +33,11 @@ Rails.application.routes.draw do
   delete '/ratings/:id', to: 'ratings#destroy'
 
     # routes for check-ins
-  
+  post '/checkins', to: 'checkins#create'
+  get '/checkins', to: 'checkins#my_checkins'
+
+
+
 
 
 
