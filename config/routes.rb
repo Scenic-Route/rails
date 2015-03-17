@@ -28,6 +28,8 @@ Rails.application.routes.draw do
   get '/routes/:id/ratings', to: 'routes#route_ratings'
     # to get all waypoints on a route
   get '/routes/:id/waypoints', to: 'waypoints#route_waypoints'
+    # to get all comments on a route
+  get '/routes/:id/comments', to: 'comments#route_comments'
 
     # routes for ratings
   post '/ratings', to: 'ratings#create' 
@@ -53,6 +55,13 @@ Rails.application.routes.draw do
   post '/favorites', to: 'favorites#create'
   patch '/favorites/:id', to: 'favorites#edit'
   delete '/favorites/:id', to: 'favorites#destroy'
+
+
+    # routes for comments
+  get '/comments', to: 'comments#my_comments'
+  post '/comments', to: 'comments#create'
+  patch '/comments/:id', to: 'comments#edit'
+  delete '/comments/:id', to: 'comments#destroy'
 
 
 

@@ -16,6 +16,7 @@ class FavoritesController < ApplicationController
   def create
     @favorite = Favorite.new(favorite_params)
     if @favorite.save
+      Route.find(@favorite.route_id).add_to_popularity
       render json: {:favorite => @favorite}, status: :ok
     else
       render json: {:error => @favorite.errors.full_messages}, status: :unprocessable_entity
@@ -41,6 +42,7 @@ class FavoritesController < ApplicationController
     @favorite = Favorite.find(params[:id])
     if @favorite.user == current_user
       if @favorite.destroy
+        @route = Route.find()
         render json: {:favorite => nil}, status: :ok
       else
         render json: {:error => @favorite.errors.full_messages}, status: :unprocessable_entity
