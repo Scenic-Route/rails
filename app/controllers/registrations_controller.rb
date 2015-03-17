@@ -3,6 +3,7 @@ class RegistrationsController < Devise::RegistrationsController
 
   def create
     @user = User.create(user_params)
+    # add obscenity gem to make sure people don't put curse words in their usernames
     @user.save
     @user.profile = Profile.create
     @user.stat_tracker = StatTracker.create
