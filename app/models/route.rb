@@ -1,6 +1,6 @@
 class Route < ActiveRecord::Base
   belongs_to :user
-  belongs_to :favorite
+  has_many :favorites
   has_many :ratings
   has_many :checkins
 
