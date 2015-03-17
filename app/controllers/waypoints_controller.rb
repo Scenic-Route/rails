@@ -22,6 +22,7 @@ class WaypointsController < ApplicationController
         render json: {:waypoint => @waypoint}, status: :ok
       else
         render json: {:error => @waypoint.errors.full_messages}, status: :unprocessable_entity
+      end
     end
   end
 
