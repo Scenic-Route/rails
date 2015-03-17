@@ -19,6 +19,7 @@ class WaypointsController < ApplicationController
     @route = Route.find(@waypoint.route_id)
     if current_user.checkins.where(route_id: @waypoint.route_id) || @route.user == current_user
       if @waypoint.save
+        @route.add_to_popularity
         render json: {:waypoint => @waypoint}, status: :ok
       else
         render json: {:error => @waypoint.errors.full_messages}, status: :unprocessable_entity

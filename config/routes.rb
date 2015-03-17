@@ -24,7 +24,12 @@ Rails.application.routes.draw do
   get '/routes/:id', to: 'routes#show'
   patch '/routes/:id', to: 'routes#edit'
   delete '/routes/:id', to: 'routes#destroy'
+    # to get all ratings on a route
   get '/routes/:id/ratings', to: 'routes#route_ratings'
+    # to get all waypoints on a route
+  get '/routes/:id/waypoints', to: 'waypoints#route_waypoints'
+    # to get all comments on a route
+  get '/routes/:id/comments', to: 'comments#route_comments'
 
     # routes for ratings
   post '/ratings', to: 'ratings#create' 
@@ -35,6 +40,31 @@ Rails.application.routes.draw do
     # routes for check-ins
   post '/checkins', to: 'checkins#create'
   get '/checkins', to: 'checkins#my_checkins'
+
+
+    # routes for waypoints
+  get '/waypoints/:id', to: 'waypoints#show'
+  get '/waypoints', to: 'waypoints#my_waypoints'
+  post '/waypoints', to: 'waypoints#create'
+  patch '/waypoints/:id', to: 'waypoints#edit'
+  delete '/waypoints/:id', to: 'waypoints#destroy'
+
+
+    # routes for favorites
+  get '/favorites', to: 'favorites#my_favorites'
+  post '/favorites', to: 'favorites#create'
+  patch '/favorites/:id', to: 'favorites#edit'
+  delete '/favorites/:id', to: 'favorites#destroy'
+
+
+    # routes for comments
+  get '/comments', to: 'comments#my_comments'
+  post '/comments', to: 'comments#create'
+  patch '/comments/:id', to: 'comments#edit'
+  delete '/comments/:id', to: 'comments#destroy'
+
+
+
 
 
 

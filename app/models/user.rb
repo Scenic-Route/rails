@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   # after_create :send_creation_email
 
 
+  # associations
 
   has_one :profile, dependent: :destroy
   has_one :stat_tracker, dependent: :destroy
@@ -16,6 +17,8 @@ class User < ActiveRecord::Base
   has_many :ratings
   has_many :checkins
   has_many :waypoints
+  has_many :favorites
+  has_many :comments
 
   # validations
 
