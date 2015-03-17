@@ -14,21 +14,28 @@ class WaypointsController < ApplicationController
 
     # POST /waypoints
   def create
+    # insert some kind of validation here that makes sure a user has checked in at a route
     @waypoint = Waypoint.new(waypoint_params)
-    if @waypoint.save
-      render json: {:waypoint => @waypoint}, status: :ok
-    else
-      render json: {:error => @waypoint.errors.full_messages}, status: :unprocessable_entity
+    @route = Route.find(@waypoint.route_id)
+    if current_user.checkins.where(route_id: @waypoint.route_id) || @route.user == current_user
+      if @waypoint.save
+        render json: {:waypoint => @waypoint}, status: :ok
+      else
+        render json: {:error => @waypoint.errors.full_messages}, status: :unprocessable_entity
     end
   end
 
     # PATCH /waypoints/:id
   def edit
     @waypoint = Waypoint.find(params[:id])
-    if @waypoint.update(waypoint_params)
-      render json: {:waypoint => @waypoint}, status: :ok
+    if current_user == @waypoint.user
+      if @waypoint.update(waypoint_params)
+        render json: {:waypoint => @waypoint}, status: :ok
+      else
+        render json: {:waypoint => @waypoint.errors.full_messages}, status: :unprocessable_entity
+      end
     else
-      render json: {:waypoint => @waypoint.errors.full_messages}, status: :unprocessable_entity
+      render json: {:error => "You can't edit a waypoint you didn't create!"}, status: :forbidden
     end
   end
 
@@ -52,6 +59,15 @@ class WaypointsController < ApplicationController
     end
   end
 
+    # GET /waypoints
+  def my_waypoints
+    @waypoints = current_user.waypoints
+    if @waypoints
+      render json: {:waypoints => @waypoints}, status: :ok
+    else
+      render json: {:error => @waypoints.errors.full_messages}, status: :unprocessable_entity
+    end
+  end
 
   private
 

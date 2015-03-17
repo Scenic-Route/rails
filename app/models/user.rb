@@ -15,6 +15,7 @@ class User < ActiveRecord::Base
   has_many :routes
   has_many :ratings
   has_many :checkins
+  has_many :waypoints
 
   # validations
 
@@ -33,6 +34,7 @@ class User < ActiveRecord::Base
 
 
          # this is all omniauth bullshit, I'll deal with this later
+         
   # def self.from_omniauth(auth)
   #   where(auth.slice(:provider, :uid)).first_or_create do |user|
   #     user.provider = auth.provider
