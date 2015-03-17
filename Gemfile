@@ -28,6 +28,8 @@ gem 'paperclip'
 
 gem 'aws-sdk', '~> 1'
 
+gem 'obscenity'
+
 
 
 gem 'geocoder'
