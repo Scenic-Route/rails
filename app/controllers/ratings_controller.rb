@@ -11,7 +11,6 @@ before_action :authenticate_user_from_token!
       if @rating.save
         # If rating saves, update user's stat tracker
         @rating.add_to_user_rating_count(current_user)
-
         @route = Route.find(@rating.route_id)
         @route.add_to_popularity
         @route.calculate_ratings
