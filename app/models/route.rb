@@ -52,7 +52,6 @@ class Route < ActiveRecord::Base
     total_traffic = 0
     total_scenic = 0
     ratings.each do |rating|
-      binding.pry
       total_quality += rating.quality_rating
       total_twist += rating.twist_rating
       total_traffic += rating.traffic_rating
