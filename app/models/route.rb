@@ -37,9 +37,11 @@ class Route < ActiveRecord::Base
     q_r = (total_ratings[0]/num_of_ratings.to_f)
     twist_r = (total_ratings[1]/num_of_ratings.to_f)
     t_r = (total_ratings[2]/num_of_ratings.to_f)
+    s_r = (total_ratings[3]/num_of_ratings.to_f)
     self.quality_rating = q_r.round(2)
     self.twist_rating = twist_r.round(2)
     self.traffic_rating = t_r.round(2)
+    self.scenery_rating = s_r.round(2)
     self.save
   end
 
@@ -48,12 +50,15 @@ class Route < ActiveRecord::Base
     total_quality = 0
     total_twist = 0
     total_traffic = 0
+    total_scenic = 0
     ratings.each do |rating|
+      binding.pry
       total_quality += rating.quality_rating
       total_twist += rating.twist_rating
       total_traffic += rating.traffic_rating
+      total_scenic += rating.scenery_rating
     end
-    total_ratings = [total_quality, total_twist, total_traffic]
+    total_ratings = [total_quality, total_twist, total_traffic, total_scenic]
   end
 
 

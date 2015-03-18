@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150318175040) do
+ActiveRecord::Schema.define(version: 20150318190308) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,14 +56,17 @@ ActiveRecord::Schema.define(version: 20150318175040) do
   end
 
   create_table "ratings", force: :cascade do |t|
-    t.integer  "police_rating"
+    t.integer  "twist_rating"
     t.integer  "quality_rating"
     t.integer  "traffic_rating"
     t.integer  "route_id"
     t.integer  "user_id"
     t.string   "comments",       default: ""
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.integer  "scenery_rating", default: 0
+    t.boolean  "sport",          default: true
+    t.boolean  "scenic",         default: true
   end
 
   add_index "ratings", ["route_id"], name: "index_ratings_on_route_id", using: :btree
@@ -83,6 +86,7 @@ ActiveRecord::Schema.define(version: 20150318175040) do
     t.float    "twist_rating",                             default: 0.0
     t.float    "traffic_rating",                           default: 0.0
     t.float    "quality_rating",                           default: 0.0
+    t.integer  "scenery_rating",                           default: 0
   end
 
   add_index "routes", ["latitude", "longitude"], name: "location_index", using: :btree
