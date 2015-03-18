@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150317183511) do
+ActiveRecord::Schema.define(version: 20150318175040) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,10 +69,10 @@ ActiveRecord::Schema.define(version: 20150317183511) do
   add_index "ratings", ["route_id"], name: "index_ratings_on_route_id", using: :btree
 
   create_table "routes", force: :cascade do |t|
-    t.decimal  "latitude",       precision: 12, scale: 10
-    t.decimal  "longitude",      precision: 12, scale: 10
-    t.decimal  "end_lat",        precision: 12, scale: 10
-    t.decimal  "end_long",       precision: 12, scale: 10
+    t.decimal  "latitude",       precision: 18, scale: 15
+    t.decimal  "longitude",      precision: 18, scale: 15
+    t.decimal  "end_lat",        precision: 18, scale: 15
+    t.decimal  "end_long",       precision: 18, scale: 15
     t.integer  "user_id"
     t.string   "name"
     t.integer  "high_limit"
@@ -124,7 +124,7 @@ ActiveRecord::Schema.define(version: 20150317183511) do
 
   create_table "waypoints", force: :cascade do |t|
     t.decimal  "longitude",          precision: 12, scale: 10
-    t.decimal  "latitude",           precision: 12, scale: 10
+    t.decimal  "latitude",           precision: 18, scale: 15
     t.string   "photo_file_name"
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
