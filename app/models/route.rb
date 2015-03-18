@@ -7,7 +7,7 @@ class Route < ActiveRecord::Base
   has_many :waypoints
 
   reverse_geocoded_by :latitude, :longitude
-  after_validation :reverse_geocode
+  #after_validation :reverse_geocode
 
 
     # validations
@@ -57,7 +57,6 @@ class Route < ActiveRecord::Base
   end
 
 
-  private
     # adds to user's stat tracker when route is created
   def add_to_user_route_count(user)
     user.stat_tracker.route_total += 1
