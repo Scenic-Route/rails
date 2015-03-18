@@ -11,8 +11,8 @@ class Route < ActiveRecord::Base
 
 
     # validations
-  validates_presence_of :start_lat
-  validates_presence_of :start_long
+  validates_presence_of :latitude
+  validates_presence_of :longitude
   validates_presence_of :end_lat
   validates_presence_of :end_long
   validates_presence_of :name
