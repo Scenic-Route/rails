@@ -3,6 +3,10 @@ class Checkin < ActiveRecord::Base
   belongs_to :route
 
 
+    # validations
+
+  validates_presence_of :user_id
+  validates_presence_of :route_id
 
     def add_to_user_checkin_count(user)
       user.stat_tracker.checkin_total += 1

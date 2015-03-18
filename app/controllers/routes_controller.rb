@@ -82,7 +82,7 @@ before_action :authenticate_user_from_token!
   private
 
     def as_json(opts={})
-      super(:only => [:id, :start_lat, :start_long, :end_lat, :end_long, :name, :high_limit, :low_limit, :popularity, :user_id])
+      super(:only => [:id, :latitude, :longitude, :end_lat, :end_long, :name, :high_limit, :low_limit, :popularity, :user_id])
     end
 
     def search_params
@@ -90,7 +90,7 @@ before_action :authenticate_user_from_token!
     end
 
     def route_params
-      params.require(:route).permit(:id, :start_lat, :start_long, :end_lat, :end_long, :name, :high_limit, :low_limit, :popularity, :user_id)
+      params.require(:route).permit(:id, :latitude, :longitude, :end_lat, :end_long, :name, :high_limit, :low_limit, :popularity, :user_id)
     end
 
 end

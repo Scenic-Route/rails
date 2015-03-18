@@ -17,6 +17,10 @@ class Waypoint < ActiveRecord::Base
   validates_with AttachmentSizeValidator, :attributes => :photo, :less_than => 2.megabytes
   
 
-
+  validates_presence_of :route_id
+  validates_presence_of :user_id
+  validates_presence_of :latitude
+  validates_presence_of :longitude
+  validates_presence_of :comment
 
 end
