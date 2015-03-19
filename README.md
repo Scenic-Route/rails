@@ -10,6 +10,12 @@ README
 ROUTING
 =====
 
+* Users: https://github.com/Scenic-Route/rails/blob/master/README.md#users
+* Profiles: https://github.com/Scenic-Route/rails/blob/master/README.md#profiles
+* Routes: https://github.com/Scenic-Route/rails/blob/master/README.md#routes
+* Ratings: https://github.com/Scenic-Route/rails/blob/master/README.md#ratings
+* Check-ins: https://github.com/Scenic-Route/rails/blob/master/README.md#check-ins
+
 Users
 -----
   
