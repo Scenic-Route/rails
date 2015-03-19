@@ -10,16 +10,24 @@ README
 ROUTING
 =====
 
+* Users: https://github.com/Scenic-Route/rails/blob/master/README.md#users
+* Profiles: https://github.com/Scenic-Route/rails/blob/master/README.md#profiles
+* Routes: https://github.com/Scenic-Route/rails/blob/master/README.md#routes
+* Ratings: https://github.com/Scenic-Route/rails/blob/master/README.md#ratings
+* Check-ins: https://github.com/Scenic-Route/rails/blob/master/README.md#check-ins
+
 Users
 -----
   
-  *To register a new user
+* To register a new user
 
   POST /users
   
-      JSON requested: {user: {email: string,
-                            password: string,
-                            username: string}
+      JSON requested: {user: {email: string, (required)
+                            password: string, (required)
+                            username: string, (required)
+                            first_name: string,
+                            last_name: string}
                             }
                             
       JSON returned: {user: {id: integer,
@@ -49,8 +57,8 @@ Users
                                     }, status: 200
                            
 
-_____
-  * To edit a user's email or password
+-----
+* To edit a user's email or password
 
   PATCH /users/edit
   
@@ -70,7 +78,7 @@ _____
                       authentication_token: string}
                            
 
-_____                           
+-----                          
   * To log in a user
 
 
@@ -92,13 +100,14 @@ _____
                           authentication_token: string}
                           }, status 200
                           
-_____                            
+-----                           
   * To destroy a user
 
   GET /users/destroy
   
       JSON returned: {user: nil}, status 200
-_____    
+      
+-----  
   * To look at a user's information
 
   GET /users
@@ -115,9 +124,9 @@ _____
                           authentication_token: string}
                           }, status 200
 
-
+_____
 Profiles
------
+=====
 
   * To edit a user's profile
 
@@ -156,7 +165,8 @@ Profiles
                                     user_id: integer}
                                     
                                     }, status: 200
-_____                             
+                                    
+-----                             
   * To view a user's profile
 
   GET /profiles/:user_id
@@ -188,6 +198,7 @@ _____
                                     }, status: 200 
                               
 
+_____
 Routes
 =====
 
@@ -195,12 +206,12 @@ Routes
 
   POST /routes
   
-      JSON requested: {route: {start_lat: decimal,
-                              start_long: decimal,
-                              end_lat: decimal,
-                              end_long: decimal,
-                              user_id: integer,
-                              name: string,
+      JSON requested: {route: {latitude: decimal, (required)
+                              longitude: decimal, (required)
+                              end_lat: decimal, (required)
+                              end_long: decimal, (required)
+                              user_id: integer, (required)
+                              name: string, (required)
                               high_limit: integer,
                               low_limit: integer}
                               
@@ -221,7 +232,7 @@ Routes
                               quality_rating: float}
                               }
                             
-_____
+-----
 * To get a user's routes (only works for signed-in user)
 
   GET /routes
@@ -261,7 +272,7 @@ _____
                         }
                         
                         
-_____                              
+-----                             
 * To view a single route's information
 
   GET /routes/:id
@@ -283,7 +294,7 @@ _____
                               quality_rating: float}
                               }
                               
-_____  
+-----
 * To edit a route
 
   PATCH /routes/:id
@@ -313,15 +324,17 @@ _____
                               traffic_rating: float,
                               quality_rating: float}
                               }
+                              
 -----
 * To search for routes by distance
 
   POST /routes/search
   
-      JSON requested: {search: {current_lat: decimal,
-                                current_long: decimal,
-                                search_radius: integer}
-                                }, status: 200
+      JSON requested: {search: {current_lat: decimal, (required)
+                                current_long: decimal, (required)
+                                search_radius: integer (required)
+                                }
+                          }, status: 200
                                 
       JSON returned: {routes: [
                             {
@@ -359,4 +372,176 @@ _____
                               quality_rating: float}
                             }
                           ]
-                        }
+                        }, status: 200
+                        
+-----
+* To get all of a route's ratings
+
+  GET /routes/:id/ratings
+  
+      JSON returned: {ratings: [
+                                {id: integer,
+                                user_id: integer,
+                                route_id: integer,
+                                twist_rating: integer,
+                                quality_rating: integer,
+                                traffic_rating: integer,
+                                scenery_rating: integer,
+                                sport: boolean,
+                                scenic: boolean,
+                                comments: string
+                                },
+                                {id: integer,
+                                user_id: integer,
+                                route_id: integer,
+                                twist_rating: integer,
+                                quality_rating: integer,
+                                traffic_rating: integer,
+                                scenery_rating: integer,
+                                sport: boolean,
+                                scenic: boolean,
+                                comments: string}
+                              ]
+                          }, status: 200
+
+-----
+* To get all of a route's waypoints
+
+  GET /routes/:id/waypoints
+  
+      JSON returned: {waypoints: [
+                                {id: integer,
+                                user_id: integer,
+                                route_id: integer,
+                                latitude: decimal,
+                                longitude: decimal,
+                                comments: string,
+                                photo: file
+                                },
+                                {id: integer,
+                                user_id: integer,
+                                route_id: integer,
+                                latitude: decimal,
+                                longitude: decimal,
+                                comments: string,
+                                photo: file
+                                }
+                              ]
+                          }, status: 200
+                        
+-----
+* To get all of a route's comments
+
+  GET /routes/:id/comments
+  
+      JSON returned: {comments: [
+                                {id: integer,
+                                user_id: integer,
+                                user_name: string,
+                                route_id: integer,
+                                content: text
+                                },
+                                {id: integer,
+                                user_id: integer,
+                                user_name: string,
+                                route_id: integer,
+                                content: text
+                                }
+                              ]
+                          }, status: 200
+                        
+-----
+RATINGS
+=====
+
+* To post a new rating
+
+  POST /ratings
+  
+      JSON requested: {rating: {user_id: integer,           (required)
+                                route_id: integer,          (required)
+                                twist_rating: integer,      (required)
+                                quality_rating: integer,    (required)
+                                traffic_rating: integer,    (required)
+                                scenery_rating: integer,    (required)
+                                sport: boolean,             (required)
+                                scenic: boolean,            (required)
+                                comments: string
+                              }
+                          }
+                          
+      JSON returned: {rating: {id: integer,
+                              user_id: integer,
+                              route_id: integer,
+                              twist_rating: integer,
+                              quality_rating: integer,
+                              traffic_rating: integer,
+                              scenery_rating: integer,
+                              sport: boolean,
+                              scenic: boolean,
+                              comments: string
+                                }, status: 201
+                                
+
+-----
+* To edit a rating
+
+  PATCH /ratings/:id
+  
+      JSON requested: {rating: {twist_rating: integer,     
+                                quality_rating: integer,  
+                                traffic_rating: integer,  
+                                scenery_rating: integer, 
+                                sport: boolean,          
+                                scenic: boolean,         
+                                comments: string
+                              }
+                          }
+                          
+      JSON returned: {rating: {id: integer,
+                              user_id: integer,
+                              route_id: integer,
+                              twist_rating: integer,
+                              quality_rating: integer,
+                              traffic_rating: integer,
+                              scenery_rating: integer,
+                              sport: boolean,
+                              scenic: boolean,
+                              comments: string
+                                }, status: 200
+
+-----
+* To delete a rating
+
+  DELETE /ratings/:id
+  
+      JSON returned: {rating: nil}, status: 200
+      
+      
+_____
+CHECK-INS
+=====
+
+* To post a new checkin
+
+  POST /checkins
+      
+      JSON requested: {checkin: {route_id: integer,       (required)
+                                user_id: integer,         (required)
+                                latitude: decimal,        (required)
+                                longitude: decimal        (required)
+                              }
+                      }
+                      
+                      
+              IF WITHIN RANGE:
+      JSON returned: {checkin: nil}, status: 200
+              ELSE:
+      JSON returned: {error: "You're not close enough to the route to check in!"}, status: 422
+    
+
+      
+            
+      
+                                
+                                
