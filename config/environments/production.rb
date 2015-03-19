@@ -50,7 +50,8 @@ Rails.application.configure do
         :user_name =>             "scenicroutemailer@gmail.com",
         :password =>              ENV["GMAIL_PASSWORD"],
         :authentication =>        :plain,
-        :tls =>                   true
+        :enable_starttls_auto =>  true,
+        :openssl_verify_mode =>   'none'
   }
 
   # `config.assets.precompile` and `config.assets.version` have moved to config/initializers/assets.rb
