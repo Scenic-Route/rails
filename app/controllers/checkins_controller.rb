@@ -3,13 +3,20 @@ class CheckinsController < ApplicationController
   before_action :authenticate_user_from_token!
 
   def create
-    @checkin = Checkin.new(checkin_params)
-    if @checkin.save
-      @checkin.add_to_user_checkin_count(current_user)
-      Route.find(@checkin.route_id).add_to_popularity
-      render json: {:checkin => @checkin}, status: :created
+    route_id = checkin_params[:route_id]
+    coordinates = [checkin_params[:latitude], checkin_params[:longitude]]
+    @route = Route.find(route_id)
+    if within_checkin_distance(@route, coordinates)
+      @checkin = Checkin.new(checkin_params)
+      if @checkin.save
+        @checkin.add_to_user_checkin_count(current_user)
+        Route.find(@checkin.route_id).add_to_popularity
+        render json: {:checkin => @checkin}, status: :created
+      else
+        render json: {:error => @checkin.errors.full_messages}, status: :unprocessable_entity
+      end
     else
-      render json: {:error => @checkin.errors.full_messages}, status: :unprocessable_entity
+      render json: {:error => "You must be within a mile of a route to check in!"}
     end
   end
 
@@ -26,12 +33,19 @@ class CheckinsController < ApplicationController
   private
 
     def checkin_params
-      params.require(:checkin).permit(:user_id, :route_id)
+      params.require(:checkin).permit(:user_id, :route_id, :latitude, :longitude)
     end
 
     def as_json(opts={})
       super(:only => [:user_id, :route_id, :id, :created_at])
     end
 
+    def within_checkin_distance(route, coordinates)
+      if Geocoder::Calculations.distance_between(route, coordinates) <= 1
+        true
+      else
+        false
+      end
+    end
 
 end

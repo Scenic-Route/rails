@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150318190308) do
+ActiveRecord::Schema.define(version: 20150319232315) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,7 +19,9 @@ ActiveRecord::Schema.define(version: 20150318190308) do
   create_table "checkins", force: :cascade do |t|
     t.integer  "route_id"
     t.integer  "user_id"
-    t.datetime "created_at", null: false
+    t.datetime "created_at",                           null: false
+    t.decimal  "latitude",   precision: 18, scale: 15
+    t.decimal  "longitude",  precision: 18, scale: 15
   end
 
   create_table "comments", force: :cascade do |t|

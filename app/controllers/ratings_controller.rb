@@ -2,22 +2,21 @@ class RatingsController < ApplicationController
 before_action :authenticate_user_from_token!
 
   def create
-
-    # insert some kind of validation to make sure a user was either the creator of the route or has checked in at the route
     @rating = Rating.new(rating_params)
     @route = Route.find(@rating.route_id)
     @user = User.find(@rating.user_id)
-    if @user == current_user && (@user.id == @route.user_id || @user.checkins.where(route_id: @rating.route_id))
+    if @user.id == @route.user_id || (@user.checkins.where(route_id: @rating.route_id).count > 0)
       if @rating.save
         # If rating saves, update user's stat tracker
         @rating.add_to_user_rating_count(current_user)
-        @route = Route.find(@rating.route_id)
         @route.add_to_popularity
         @route.calculate_ratings
         render json: {:rating => @rating, :route => @rating.route}, status: :created
       else
         render json: {:error => @rating.errors.full_messages}, status: :unprocessable_entity
       end
+    else
+      render json: {:error => "You can't rate a route until you've checked in at it!"}, status: :unprocessable_entity
     end
   end
 
