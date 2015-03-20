@@ -16,7 +16,7 @@ class CheckinsController < ApplicationController
         render json: {:error => @checkin.errors.full_messages}, status: :unprocessable_entity
       end
     else
-      render json: {:error => "You must be within a mile of a route to check in!"}
+      render json: {:error => "You must be within a mile of a route to check in!"}, status: :forbidden
     end
   end
 

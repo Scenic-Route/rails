@@ -16,7 +16,7 @@ before_action :authenticate_user_from_token!
         render json: {:error => @rating.errors.full_messages}, status: :unprocessable_entity
       end
     else
-      render json: {:error => "You can't rate a route until you've checked in at it!"}, status: :unprocessable_entity
+      render json: {:error => "You can't rate a route until you've checked in at it!"}, status: :forbidden
     end
   end
 
