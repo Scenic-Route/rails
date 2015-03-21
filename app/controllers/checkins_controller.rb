@@ -11,7 +11,7 @@ class CheckinsController < ApplicationController
       if @checkin.save
         @checkin.add_to_user_checkin_count(current_user)
         Route.find(@checkin.route_id).add_to_popularity
-        render json: {:checkin => @checkin}, status: :created
+        render json: {:checkin => nil}, status: :created
       else
         render json: {:error => @checkin.errors.full_messages}, status: :unprocessable_entity
       end

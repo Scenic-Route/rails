@@ -2,7 +2,7 @@ class RegistrationsController < Devise::RegistrationsController
 
 
   def create
-    @user = User.create(user_params)
+    @user = User.new(user_params)
     # add obscenity gem to make sure people don't put curse words in their usernames
     if Obscenity.profane?(@user.username) || Obscenity.profane?(@user.first_name) || Obscenity.profane?(@user.last_name)
       render json: {:error => "You cannot have profanity in your user information. YA JACKASS!"}
