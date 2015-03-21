@@ -188,7 +188,7 @@ Profiles
                               vehicle_model: string,
                               vehicle_link: string,
                               level: string},
-                      stat_tracker: {route_total: string,
+                      stat_tracker: {route_total: integer,
                                     comment_total: integer,
                                     rating_total: integer,
                                     checkin_total: integer,
@@ -229,7 +229,8 @@ Routes
                               updated_at: timestamp,
                               twist_rating: float,
                               traffic_rating: float,
-                              quality_rating: float}
+                              quality_rating: float,
+                              scenery_rating: float}
                               }
                             
 -----
@@ -252,7 +253,8 @@ Routes
                               updated_at: timestamp,
                               twist_rating: float,
                               traffic_rating: float,
-                              quality_rating: float},
+                              quality_rating: float,
+                              scenery_rating: float},
                               
                               {id: integer,
                               start_lat: decimal,
@@ -268,7 +270,8 @@ Routes
                               updated_at: timestamp,
                               twist_rating: float,
                               traffic_rating: float,
-                              quality_rating: float}]
+                              quality_rating: float,
+                              scenery_rating: float}]
                         }
                         
                         
@@ -291,7 +294,8 @@ Routes
                               updated_at: timestamp,
                               twist_rating: float,
                               traffic_rating: float,
-                              quality_rating: float}
+                              quality_rating: float,
+                              scenery_rating: float}
                               }
                               
 -----
@@ -322,7 +326,8 @@ Routes
                               updated_at: timestamp,
                               twist_rating: float,
                               traffic_rating: float,
-                              quality_rating: float}
+                              quality_rating: float,
+                              scenery_rating: float}
                               }
                               
 -----
@@ -352,7 +357,10 @@ Routes
                               updated_at: timestamp,
                               twist_rating: float,
                               traffic_rating: float,
-                              quality_rating: float}
+                              quality_rating: float,
+                              scenery_rating: float,
+                              distance: float,
+                              bearing: float}
                             },
                             {  
                               {id: integer,
@@ -369,7 +377,10 @@ Routes
                               updated_at: timestamp,
                               twist_rating: float,
                               traffic_rating: float,
-                              quality_rating: float}
+                              quality_rating: float,
+                              scenery_rating: float,
+                              distance: float,
+                              bearing: float}
                             }
                           ]
                         }, status: 200
