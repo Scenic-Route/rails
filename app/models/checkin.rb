@@ -16,11 +16,5 @@ class Checkin < ActiveRecord::Base
     end
 
 
-    def within_checkin_distance(route, coordinates)
-      if Geocoder::Calculations.distance_between(route, coordinates) <= 1
-        true
-      else
-        false
-      end
-    end
+
 end
