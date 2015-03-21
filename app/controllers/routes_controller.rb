@@ -37,6 +37,7 @@ before_action :authenticate_user_from_token!
   def create
     # add points to user's stat tracker
     @route = Route.new(route_params)
+    @route.username = current_user.username
     if @route.save
       @route.add_to_user_route_count(current_user)
       render json: {:route => @route}, status: :created

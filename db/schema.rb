@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150321211432) do
+ActiveRecord::Schema.define(version: 20150321215000) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -99,6 +99,7 @@ ActiveRecord::Schema.define(version: 20150321211432) do
     t.float    "traffic_rating",                           default: 0.0
     t.float    "quality_rating",                           default: 0.0
     t.integer  "scenery_rating",                           default: 0
+    t.string   "username"
   end
 
   add_index "routes", ["latitude", "longitude"], name: "location_index", using: :btree
