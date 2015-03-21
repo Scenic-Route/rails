@@ -41,6 +41,23 @@ class UserController < ApplicationController
   end
 
 
+
+  def edit_username
+    if current_user.can_edit_username == true
+      current_user.username = user_params[:username]
+      if current_user.save
+        current_user.can_edit_username = false
+        current_user.save
+        render json: {:user => current_user, :profile => current_user.profile, :stat_tracker => current_user.stat_tracker}, status: :ok
+      else
+        render json: {:error => current_user.errors.full_messages}, status: :unprocessable_entity
+      end
+    else
+      render json: {:error => "You're not allowed to edit your username."}, status: :forbidden
+    end
+  end
+
+
   private
 
     def as_json(opts={})

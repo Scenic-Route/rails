@@ -24,6 +24,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     @user.last_name = info['info']['last_name']
     @user.uid = info['uid']
     @user.provider = info['provider']
+    @user.can_edit_username = true
     if @user.save
       @user.profile = Profile.create
       @user.stat_tracker = StatTracker.create

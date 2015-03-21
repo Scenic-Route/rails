@@ -6,8 +6,9 @@ Rails.application.routes.draw do
                    controllers: {omniauth_callbacks: "omniauth_callbacks", sessions: "sessions", registrations: "registrations"}
 
     # routes for users
-  patch 'users/edit', to: 'users#edit'
-  get 'users/show', to: 'users#show'
+  patch '/users/edit', to: 'users#edit'
+  get '/users/show', to: 'users#show'
+  post '/users/edit_username', to: 'users#edit_username'
 
     # routes for profiles
   get '/profiles/:id', to: 'profiles#show'
