@@ -17,7 +17,6 @@ class User < ActiveRecord::Base
   has_many :routes
   has_many :ratings
   has_many :checkins
-  has_many :waypoints
   has_many :favorites
   has_many :comments
 

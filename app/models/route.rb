@@ -1,4 +1,6 @@
 class Route < ActiveRecord::Base
+
+    # associations
   belongs_to :user
   has_many :favorites
   has_many :ratings
@@ -19,15 +21,6 @@ class Route < ActiveRecord::Base
   validates_presence_of :user_id
 
 
-    # takes a search_params hash and finds all routes based on distance, organizes them based on order_by 
-    # isn't necessary right now? Perhaps I can find a way to make my controllers a little bit lighter
-
-    
-  # def search_by_distance(search_params)
-  #   current_location = [search_params[:current_lat], search_params[:current_long]]
-  #   search_radius = search_params[:search_radius]
-  #   Route.near(current_location, search_radius)
-  # end
 
     # dynamically calculates rankings for police, traffic, and quality
   def calculate_ratings

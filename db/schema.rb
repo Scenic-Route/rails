@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150321215000) do
+ActiveRecord::Schema.define(version: 20150322231204) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -141,15 +141,11 @@ ActiveRecord::Schema.define(version: 20150321215000) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "waypoints", force: :cascade do |t|
-    t.decimal  "longitude",          precision: 12, scale: 10
-    t.decimal  "latitude",           precision: 18, scale: 15
-    t.string   "photo_file_name"
-    t.string   "photo_content_type"
-    t.integer  "photo_file_size"
-    t.datetime "photo_updated_at"
-    t.string   "comment"
-    t.integer  "route_id"
-    t.integer  "user_id"
+    t.decimal "longitude",      precision: 18, scale: 15
+    t.decimal "latitude",       precision: 18, scale: 15
+    t.string  "comment"
+    t.integer "route_id"
+    t.integer "waypoint_order"
   end
 
   add_foreign_key "identities", "users"
