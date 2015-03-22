@@ -344,8 +344,8 @@ Routes
       JSON returned: {routes: [
                             {
                               {id: integer,
-                              start_lat: decimal,
-                              start_long: decimal,
+                              latitude: decimal,
+                              longitude: decimal,
                               end_lat: decimal,
                               end_long: decimal,
                               user_id: integer,
@@ -364,8 +364,8 @@ Routes
                             },
                             {  
                               {id: integer,
-                              start_lat: decimal,
-                              start_long: decimal,
+                              latitude: decimal,
+                              longitude: decimal,
                               end_lat: decimal,
                               end_long: decimal,
                               user_id: integer,
