@@ -91,7 +91,8 @@ before_action :authenticate_user_from_token!
     end
 
     def route_params
-      params.require(:route).permit(:id, :latitude, :longitude, :end_lat, :end_long, :name, :high_limit, :low_limit, :popularity, :user_id)
+      params.require(:route).permit(:id, :latitude, :longitude, :end_lat, :end_long, :name, :high_limit, :low_limit, :popularity, :user_id,
+                                    :waypoints => [:waypoint => [:latitude, :longitude, :comment, :waypoint_order]])
     end
 
 end
