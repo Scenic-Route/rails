@@ -2,7 +2,6 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   
   def all
     user_info = env['omniauth.auth']
-    binding.pry
     user_uid = user_info['uid']
     @user = User.find_by_uid(user_uid)
     if @user
