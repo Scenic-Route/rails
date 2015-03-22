@@ -1,13 +1,12 @@
-class UserController < ApplicationController
+class UsersController < ApplicationController
   before_action :authenticate_user_from_token!
 
 
   def show # Read
-    @user = User.find(params[:id])
-    if @user
-      render json: {:user => @user}, status: :ok
+    if current_user
+      render json: {:user => current_user}, status: :ok
     else
-      render json: {:error => @user.errors.full_messages}, status: :unprocessable_entity
+      render json: {:error => current_user.errors.full_messages}, status: :unprocessable_entity
     end
   end
 

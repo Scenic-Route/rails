@@ -1,14 +1,16 @@
 Rails.application.routes.draw do
 
   root to: "users#index"
-  get 'users/destroy', to: 'users#destroy'
-  devise_for :users, path_names: {sign_in: "login", sign_out: "logout"},
-                   controllers: {omniauth_callbacks: "omniauth_callbacks", sessions: "sessions", registrations: "registrations"}
+  get '/users/destroy', to: 'users#destroy'
 
-    # routes for users
+      # routes for users
   patch '/users/edit', to: 'users#edit'
   get '/users/show', to: 'users#show'
   post '/users/edit_username', to: 'users#edit_username'
+  
+  devise_for :users, path_names: {sign_in: "login", sign_out: "logout"},
+                   controllers: {omniauth_callbacks: "omniauth_callbacks", sessions: "sessions", registrations: "registrations"}
+
 
     # routes for profiles
   get '/profiles/:id', to: 'profiles#show'
