@@ -27,6 +27,8 @@ class Route < ActiveRecord::Base
       @waypoint.route_id = route_id
       @waypoint.save
     end
+    @waypoints = Waypoint.where(route_id: route_id).all
+    @waypoints.order(:waypoint_order)
   end
 
     # dynamically calculates rankings for police, traffic, and quality

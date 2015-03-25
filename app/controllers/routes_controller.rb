@@ -45,17 +45,23 @@ before_action :authenticate_user_from_token!
     # if no errors, send back route and waypoints
     parameters = route_params
     @route = Route.new
-    parameters['waypoints']
-    waypoints = parameters['waypoints']
-    parameters.delete('waypoints')
+    if parameters['waypoints']
+      waypoints = parameters['waypoints']
+      parameters.delete('waypoints')
+    end
     @route.update(parameters)
     if @route.save
-      @waypoints = @route.create_waypoints(@waypoints, @route.id)
-      @waypoints.order(:waypoint_order)
+      if waypoints
+        @waypoints = @route.create_waypoints(waypoints, @route.id)
+      end
       @route.username = current_user.username
       if @route.save
         @route.add_to_user_route_count(current_user)
-        render json: {:route => @route, :waypoints => @waypoints}, status: :created
+        if @waypoints
+          render json: {:route => @route, :waypoints => @waypoints}, status: :created
+        else
+          render json: {:route => @route}, status: :created
+        end
       else
         render json: {:error => @route.errors.full_messages}, status: :unprocessable_entity
       end

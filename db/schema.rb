@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150322231204) do
+ActiveRecord::Schema.define(version: 20150325141837) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,6 +48,19 @@ ActiveRecord::Schema.define(version: 20150322231204) do
   end
 
   add_index "identities", ["user_id"], name: "index_identities_on_user_id", using: :btree
+
+  create_table "points_of_interests", force: :cascade do |t|
+    t.integer  "route_id"
+    t.boolean  "hazard"
+    t.boolean  "police"
+    t.boolean  "view"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
+    t.decimal  "latitude",           precision: 18, scale: 15
+    t.decimal  "longitude",          precision: 18, scale: 15
+  end
 
   create_table "profiles", force: :cascade do |t|
     t.string   "location"
