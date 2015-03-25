@@ -49,8 +49,10 @@ ActiveRecord::Schema.define(version: 20150325141837) do
 
   add_index "identities", ["user_id"], name: "index_identities_on_user_id", using: :btree
 
-  create_table "points_of_interests", force: :cascade do |t|
+  create_table "interest_points", force: :cascade do |t|
+    t.string   "comment"
     t.integer  "route_id"
+    t.integer  "user_id"
     t.boolean  "hazard"
     t.boolean  "police"
     t.boolean  "view"
