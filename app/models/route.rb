@@ -7,7 +7,7 @@ class Route < ActiveRecord::Base
   has_many :checkins
   has_many :comments
   has_many :waypoints
-  has_many :points_of_interests
+  has_many :interest_points
 
   reverse_geocoded_by :latitude, :longitude
   #after_validation :reverse_geocode

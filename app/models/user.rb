@@ -19,6 +19,7 @@ class User < ActiveRecord::Base
   has_many :checkins
   has_many :favorites
   has_many :comments
+  has_many :interest_points
 
   # validations
 
