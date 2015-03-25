@@ -1,10 +1,13 @@
 class Route < ActiveRecord::Base
+
+    # associations
   belongs_to :user
   has_many :favorites
   has_many :ratings
   has_many :checkins
   has_many :comments
   has_many :waypoints
+  has_many :interest_points
 
   reverse_geocoded_by :latitude, :longitude
   #after_validation :reverse_geocode
@@ -19,15 +22,15 @@ class Route < ActiveRecord::Base
   validates_presence_of :user_id
 
 
-    # takes a search_params hash and finds all routes based on distance, organizes them based on order_by 
-    # isn't necessary right now? Perhaps I can find a way to make my controllers a little bit lighter
-
-    
-  # def search_by_distance(search_params)
-  #   current_location = [search_params[:current_lat], search_params[:current_long]]
-  #   search_radius = search_params[:search_radius]
-  #   Route.near(current_location, search_radius)
-  # end
+  def create_waypoints(waypoints, route_id)
+    waypoints.each do |waypoint|
+      @waypoint = Waypoint.new(waypoint)
+      @waypoint.route_id = route_id
+      @waypoint.save
+    end
+    @waypoints = Waypoint.where(route_id: route_id).all
+    @waypoints.order(:waypoint_order)
+  end
 
     # dynamically calculates rankings for police, traffic, and quality
   def calculate_ratings
