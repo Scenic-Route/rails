@@ -3,8 +3,9 @@ before_action :authenticate_user_from_token!
 
   def show
     @route = Route.find(params[:id])
+    @waypoints = Waypoint.where(route_id: @route.id).all
     if @route
-      render json: {:route => @route}, status: :ok
+      render json: {:route => @route, :waypoints => @waypoints}, status: :ok
     else
       render json: {:error => @route.errors.full_messages}, status: :unprocessable_entity
     end
@@ -36,13 +37,30 @@ before_action :authenticate_user_from_token!
 
   def create
     # add points to user's stat tracker
-    @route = Route.new(route_params)
-    @route.username = current_user.username
+
+
+    # so, first I'll have to check to see if there are any waypoints.
+    # if there are. Create the route first.
+    # if no errors, create the waypoints
+    # if no errors, send back route and waypoints
+    parameters = route_params
+    @route = Route.new
+    parameters['waypoints']
+    waypoints = parameters['waypoints']
+    parameters.delete('waypoints')
+    @route.update(parameters)
     if @route.save
-      @route.add_to_user_route_count(current_user)
-      render json: {:route => @route}, status: :created
+      @waypoints = @route.create_waypoints(@waypoints, @route.id)
+      @waypoints.order(:waypoint_order)
+      @route.username = current_user.username
+      if @route.save
+        @route.add_to_user_route_count(current_user)
+        render json: {:route => @route, :waypoints => @waypoints}, status: :created
+      else
+        render json: {:error => @route.errors.full_messages}, status: :unprocessable_entity
+      end
     else
-      render json: {:error => @route.error.full_messages}, status: :unprocessable_entity
+      render json: {:error => @route.errors.full_messages}, status: :unprocessable_entity
     end
   end
 
@@ -91,8 +109,8 @@ before_action :authenticate_user_from_token!
     end
 
     def route_params
-      params.require(:route).permit(:id, :latitude, :longitude, :end_lat, :end_long, :name, :high_limit, :low_limit, :popularity, :user_id,
-                                    :waypoints => [:waypoint => [:latitude, :longitude, :comment, :waypoint_order]])
+      params.require(:route).permit(:id, :latitude, :longitude, :end_lat, :end_long, :name, :high_limit, :low_limit, :popularity, :user_id, 
+                                    :waypoints => [:latitude, :longitude, :comment, :waypoint_order])
     end
 
 end

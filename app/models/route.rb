@@ -21,6 +21,13 @@ class Route < ActiveRecord::Base
   validates_presence_of :user_id
 
 
+  def create_waypoints(waypoints, route_id)
+    waypoints.each do |waypoint|
+      @waypoint = Waypoint.new(waypoint)
+      @waypoint.route_id = route_id
+      @waypoint.save
+    end
+  end
 
     # dynamically calculates rankings for police, traffic, and quality
   def calculate_ratings
