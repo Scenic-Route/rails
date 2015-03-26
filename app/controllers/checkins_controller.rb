@@ -6,6 +6,7 @@ class CheckinsController < ApplicationController
     route_id = checkin_params[:route_id]
     coordinates = [checkin_params[:latitude], checkin_params[:longitude]]
     @route = Route.find(route_id)
+    binding.pry
     if within_checkin_distance([@route.latitude, @route.longitude], coordinates)
       @checkin = Checkin.new(checkin_params)
       if @checkin.save
@@ -41,10 +42,10 @@ class CheckinsController < ApplicationController
     end
 
     def within_checkin_distance(route, coordinates)
-      if Geocoder::Calculations.distance_between(route, coordinates) <= 1
-        true
+      if Geocoder::Calculations.distance_between(route, coordinates) <= 3
+        return true
       else
-        false
+        return false
       end
     end
 
