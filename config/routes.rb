@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   patch '/users/edit', to: 'users#edit'
   get '/users/show', to: 'users#show'
   post '/users/edit_username', to: 'users#edit_username'
-  
+
   devise_for :users, path_names: {sign_in: "login", sign_out: "logout"},
                    controllers: {omniauth_callbacks: "omniauth_callbacks", sessions: "sessions", registrations: "registrations"}
 
@@ -33,6 +33,8 @@ Rails.application.routes.draw do
   get '/routes/:id/waypoints', to: 'waypoints#route_waypoints'
     # to get all comments on a route
   get '/routes/:id/comments', to: 'comments#route_comments'
+    # to get all interest points on a route
+  get '/routes/:id/interest_points', to: 'interest_points#route_points'
 
     # routes for ratings
   post '/ratings', to: 'ratings#create' 
@@ -64,6 +66,13 @@ Rails.application.routes.draw do
   post '/comments', to: 'comments#create'
   patch '/comments/:id', to: 'comments#edit'
   delete '/comments/:id', to: 'comments#destroy'
+
+    # routes for interest points
+
+  post '/interest_points', to: 'interest_points#create'
+  patch '/interest_points/:id', to: 'interest_points#edit'
+  delete '/interest_points/:id', to: 'interest_points#destroy'
+
 
 
 

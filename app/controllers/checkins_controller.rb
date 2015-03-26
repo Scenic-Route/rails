@@ -6,7 +6,7 @@ class CheckinsController < ApplicationController
     route_id = checkin_params[:route_id]
     coordinates = [checkin_params[:latitude], checkin_params[:longitude]]
     @route = Route.find(route_id)
-    if within_checkin_distance(@route, coordinates)
+    if within_checkin_distance([@route.latitude, @route.longitude], coordinates)
       @checkin = Checkin.new(checkin_params)
       if @checkin.save
         @checkin.add_to_user_checkin_count(current_user)
