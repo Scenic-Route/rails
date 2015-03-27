@@ -23,8 +23,7 @@ class User < ActiveRecord::Base
 
   # validations
 
-  validates_presence_of :first_name
-  validates_presence_of :last_name
+
   validates_presence_of :username
   validates_uniqueness_of :username
 
