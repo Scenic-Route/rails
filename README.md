@@ -15,6 +15,7 @@ ROUTING
 * Routes: https://github.com/Scenic-Route/rails/blob/master/README.md#routes
 * Ratings: https://github.com/Scenic-Route/rails/blob/master/README.md#ratings
 * Check-ins: https://github.com/Scenic-Route/rails/blob/master/README.md#check-ins
+* Favorites: https://github.com/Scenic-Route/rails/blob/master/README.md#favorites
 
 Users
 -----
