@@ -551,7 +551,46 @@ CHECK-INS
       JSON returned: {error: "You're not close enough to the route to check in!"}, status: 422
     
 
+_____
+FAVORITES
+=====
+
+* To post a new favorite
+
+  POST /favorites
+  
+      JSON requested: {favorite: {route_id: integer,      (required)
+                                  user_id: integer,       (required)
+                                  favorite_name: string   (required)
+                                  }
+                                }
       
+      JSON returned: {favorite: {route_id: integer,
+                                 user_id: integer,
+                                 favorite_name: string
+                                }, status: 200
+                              }
+                              
+
+* To view your own favorites
+
+  GET /favorites
+      
+      JSON returned: {favorites: [
+                                  {id: integer,
+                                   route_id: integer,
+                                   user_id: integer,
+                                   favorite_name: string
+                                  },
+                                  {id: integer,
+                                   route_id: integer,
+                                   user_id: integer,
+                                   favorite_name: string
+                                  }
+                                 ]
+                              }, status: 200
+                              
+
             
       
                                 
