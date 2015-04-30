@@ -591,8 +591,62 @@ FAVORITES
                                  ]
                               }, status: 200
                               
+_____
+INTEREST POINTS
+=====
 
+* To post an interest point
+
+  POST /interest_points
+  
+      JSON requested: {interest_point: {comment: string,
+                                        route_id: integer,
+                                        hazard: boolean,        (user MUST choose 1 and only 1)
+                                        police: boolean,        (user MUST choose 1 and only 1)
+                                        view: boolean,          (user MUST choose 1 and only 1)
+                                        latitude: decimal,
+                                        longitude: decimal
+                                      }
+                                    }
             
-      
+      JSON returned: {interest_point: { id: integer,
+                                        comment: string,
+                                        route_id: integer,
+                                        user_id: integer,
+                                        hazard: boolean,
+                                        police: boolean, 
+                                        view: boolean,     
+                                        latitude: decimal,
+                                        longitude: decimal
+                                      }
+                                    }, status: 200
+                                    
+* To get all of a route's interest points
+
+  GET /interest_points/:id
+  
+      JSON returned: {interest_points: [
+                                      { id: integer,
+                                        comment: string,
+                                        route_id: integer,
+                                        user_id: integer,
+                                        hazard: boolean,
+                                        police: boolean, 
+                                        view: boolean,     
+                                        latitude: decimal,
+                                        longitude: decimal
+                                      },
+                                      { id: integer,
+                                        comment: string,
+                                        route_id: integer,
+                                        user_id: integer,
+                                        hazard: boolean,
+                                        police: boolean, 
+                                        view: boolean,     
+                                        latitude: decimal,
+                                        longitude: decimal
+                                      }
+                                      ]
+                                    }, status: 200
                                 
                                 
