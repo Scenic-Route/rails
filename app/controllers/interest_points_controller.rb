@@ -21,7 +21,7 @@ before_action :authenticate_user_from_token!
     @interest_point = InterestPoint.find(params[:id])
     if current_user.id == @interest_point.user_id
       if @interest_point.update(parameters)
-        render json: {:interest_point => @interest_point}
+        render json: {:interest_point => @interest_point}, status: :created
       else
         render json: {:error => @interest_point.errors.full_messages}, status: :unprocessable_entity
       end
@@ -32,7 +32,9 @@ before_action :authenticate_user_from_token!
 
   def destroy
     @interest_point = InterestPoint.find(params[:id])
-    if current_user.id == @interest_point.user_id
+    route = Route.find(@interest_point.route_id)
+    route_creator = User.find(user_id)
+    if current_user.id == @interest_point.user_id || current_user == route_creator
       if @interest_point.destroy
         render json: {:interest_point => nil}, status: :ok
       else

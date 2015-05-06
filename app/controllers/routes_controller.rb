@@ -50,11 +50,11 @@ before_action :authenticate_user_from_token!
       parameters.delete('waypoints')
     end
     @route.update(parameters)
+    @route.username = current_user.username
     if @route.save
       if waypoints
         @waypoints = @route.create_waypoints(waypoints, @route.id)
       end
-      @route.username = current_user.username
       if @route.save
         @route.add_to_user_route_count(current_user)
         if @waypoints
