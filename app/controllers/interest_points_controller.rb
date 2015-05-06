@@ -7,11 +7,16 @@ before_action :authenticate_user_from_token!
   def create
     parameters = interest_point_params
     @interest_point = InterestPoint.new(parameters)
+    @route = Route.find(@interest_point.route_id)
     @interest_point.user_id = current_user.id
-    if @interest_point.save
-      render json: {:interest_point => @interest_point}, status: :created
+    if current_user.checkins.where(route_id: @route.id) || @route.id == current_user.id
+      if @interest_point.save
+        render json: {:interest_point => @interest_point}, status: :created
+      else
+        render json: {:error => @interest_point.errors.full_messages}, status: :unprocessable_entity
+      end
     else
-      render json: {:error => @interest_point.errors.full_messages}, status: :unprocessable_entity
+      render json: {:error => "You must be the route creator or have checked in at the route to place points of interest!"}
     end
   end
 
