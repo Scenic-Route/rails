@@ -15,6 +15,8 @@ ROUTING
 * Routes: https://github.com/Scenic-Route/rails/blob/master/README.md#routes
 * Ratings: https://github.com/Scenic-Route/rails/blob/master/README.md#ratings
 * Check-ins: https://github.com/Scenic-Route/rails/blob/master/README.md#check-ins
+* Favorites: https://github.com/Scenic-Route/rails/blob/master/README.md#favorites
+* Interest Points: https://github.com/Scenic-Route/rails/blob/master/README.md#interest-points
 
 Users
 -----
@@ -551,8 +553,101 @@ CHECK-INS
       JSON returned: {error: "You're not close enough to the route to check in!"}, status: 422
     
 
+_____
+FAVORITES
+=====
+
+* To post a new favorite
+
+  POST /favorites
+  
+      JSON requested: {favorite: {route_id: integer,      (required)
+                                  user_id: integer,       (required)
+                                  favorite_name: string   (required)
+                                  }
+                                }
       
+      JSON returned: {favorite: {route_id: integer,
+                                 user_id: integer,
+                                 favorite_name: string
+                                }, status: 200
+                              }
+                              
+
+* To view your own favorites
+
+  GET /favorites
+      
+      JSON returned: {favorites: [
+                                  {id: integer,
+                                   route_id: integer,
+                                   user_id: integer,
+                                   favorite_name: string
+                                  },
+                                  {id: integer,
+                                   route_id: integer,
+                                   user_id: integer,
+                                   favorite_name: string
+                                  }
+                                 ]
+                              }, status: 200
+                              
+_____
+INTEREST POINTS
+=====
+
+* To post an interest point
+
+  POST /interest_points
+  
+      JSON requested: {interest_point: {comment: string,
+                                        route_id: integer,
+                                        hazard: boolean,        (user MUST choose 1 and only 1)
+                                        police: boolean,        (user MUST choose 1 and only 1)
+                                        view: boolean,          (user MUST choose 1 and only 1)
+                                        latitude: decimal,
+                                        longitude: decimal
+                                      }
+                                    }
             
-      
+      JSON returned: {interest_point: { id: integer,
+                                        comment: string,
+                                        route_id: integer,
+                                        user_id: integer,
+                                        hazard: boolean,
+                                        police: boolean, 
+                                        view: boolean,     
+                                        latitude: decimal,
+                                        longitude: decimal
+                                      }
+                                    }, status: 200
+                                    
+* To get all of a route's interest points
+
+  GET /interest_points/:id
+  
+      JSON returned: {interest_points: [
+                                      { id: integer,
+                                        comment: string,
+                                        route_id: integer,
+                                        user_id: integer,
+                                        hazard: boolean,
+                                        police: boolean, 
+                                        view: boolean,     
+                                        latitude: decimal,
+                                        longitude: decimal
+                                      },
+                                      { id: integer,
+                                        comment: string,
+                                        route_id: integer,
+                                        user_id: integer,
+                                        hazard: boolean,
+                                        police: boolean, 
+                                        view: boolean,     
+                                        latitude: decimal,
+                                        longitude: decimal
+                                      }
+                                      ]
+                                    }, status: 200
                                 
                                 
