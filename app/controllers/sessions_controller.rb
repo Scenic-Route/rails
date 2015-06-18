@@ -8,6 +8,7 @@ class SessionsController < Devise::SessionsController
         render json: {:user => current_user, :profile => current_user.profile, :stat_tracker => current_user.stat_tracker}, status: :ok
       else
         render json: {:error => "Username or Password is incorrect"}, status: :unauthenticated
+      end
     else
       render json: {:error => "Authentication Failure!"}, status: :unauthenticated
     end
