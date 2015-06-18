@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
       sign_in user, store: false
     else
       render json: { :error => "Authentication Failure! BOO!"},
-             status: :unauthenticated
+             status: :forbidden
     end
 
   end
