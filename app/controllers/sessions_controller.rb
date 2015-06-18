@@ -3,13 +3,10 @@ class SessionsController < Devise::SessionsController
   def create
     self.resource = warden.authenticate(auth_options)
     if self.resource
-      if sign_in(resource_name, resource)
-        render json: {:user => current_user, :profile => current_user.profile, :stat_tracker => current_user.stat_tracker}, status: :ok
-      else
-        render json: {:error => "Authentication failure!"}, status: :unauthenticated
-      end
+      sign_in(resource_name, resource)
+      render json: {:user => current_user, :profile => current_user.profile, :stat_tracker => current_user.stat_tracker}, status: :ok
     else
-      render json: {:error => "Authentication Failure!"}, status: :unauthenticated
+      render json: {:error => "Authentication Failure!"}, status: :forbidden
     end
   end
 end
